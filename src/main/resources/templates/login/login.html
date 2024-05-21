@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inicio de sesión</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/styles_login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Inicio de sesión</h1>
+            
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <label for="username" class="label">Nombre de usuario:</label>
+                    <input type="email" id="username" name="username" class="input" placeholder="Ingrese Email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="label">Contraseña:</label>
+                    <input type="password" id="password" name="password" class="input" placeholder="Ingrese Contraseña">
+                </div>
+                
+                <input type="submit" value="Iniciar sesión" class="button">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

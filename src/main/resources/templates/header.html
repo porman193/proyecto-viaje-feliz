@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Principal</title>
+    <link rel="stylesheet" type="text/css" href="css/styles_header.css">
+</head>
+<body>
+<header id="main-header">
+    <div class="logo-container">
+        <img src="images/logo_viaje_feliz.png" alt="Logo">
+    </div>
+
+    <div class="middle-container">
+        <nav>
+            <h1>Viaje Feliz</h1>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#about">Sobre nosotros</a></li>
+                <li><a href="#contact">Contacto</a></li>
+                <li><a href="/destinations">Destinos</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="right-container">
+        <div th:unless="${session.userAuth != null}">
+            <a class="button " href="/login">Iniciar sesión</a>
+        </div>
+        <div th:if="${session.userAuth != null}" class="user-container">
+            <div class="user-info-container">
+                <img class="user-img" src="images/user_ico.png" alt="Foto de perfil">
+                <a href="#"><span th:text="${session.userAuth.nombres+' '+session.userAuth.apellidos}"></span></a>
+            </div>
+            <a class="logout-button" href="/logout">Cerrar Sesión</a>
+        </div>
+    </div>
+</header>
+<script>
+    window.addEventListener('scroll', function() {
+        const header = document.getElementById('main-header');
+        const scrollPosition = window.scrollY || window.pageYOffset;
+        const fixedClass = 'fixed';
+        const bodyFixedClass = 'fixed-header';
+
+        if (scrollPosition > 200) { // Ajusta este valor según cuándo quieras que se fije el header
+            header.classList.add(fixedClass);
+            document.body.classList.add(bodyFixedClass); // Añade clase al body para el padding-top
+        } else {
+            header.classList.remove(fixedClass);
+            document.body.classList.remove(bodyFixedClass); // Remueve clase del body
+        }
+    });
+</script>
+</body>
+</html>
+
+
