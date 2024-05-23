@@ -1,6 +1,7 @@
 DROP DATABASE IF EXISTS viajefeliz;
 
 CREATE DATABASE IF NOT EXISTS viajefeliz;
+
 USE viajefeliz;
 
 CREATE TABLE IF NOT EXISTS usuario (

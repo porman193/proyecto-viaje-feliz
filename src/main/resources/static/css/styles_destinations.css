@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+.search-container{
+    margin: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-container form { 
+    border: solid 1px;
+    border-radius:  200px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+}
+
+.input-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+}
+
+.input-container label{
+    margin-bottom: 5px;
+    text-align: right;
+    text-decoration: none;
+}
+
+.input-container input{
+    padding: 5px;
+    border: none;
+    border-bottom: solid 1px ;
+}

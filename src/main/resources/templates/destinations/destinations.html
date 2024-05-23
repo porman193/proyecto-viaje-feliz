@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Destinos</title>
+    <link rel="stylesheet" type="text/css" href="css/styles_header.css">
+    <link rel="stylesheet" type="text/css" href="css/styles_footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="css/styles_destinations.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div style="margin: 0" th:include="header"></div>
+    <div class="search-container">
+     <form>
+        <div class="input-container">
+            <label for="lugar">Lugar</label>
+            <input type="text" placeholder="Lugar">
+        </div>
+
+        <div class="input-container">
+            <label for="llegada">Llegada</label>
+            <input type="text" placeholder="Fecha Llegada">
+        </div>
+        
+        <div class="input-container">
+            <label for="salida">Salida</label>
+            <input type="text" placeholder="Fecha Salida">
+        </div>
+        
+        <div class="input-container">
+            <label for="Personas">Personas</label>
+            <input type="text" placeholder="¿Cuántos?">
+        </div>
+        <button type="submit">Buscar</button>
+     </form>
+    </div>    
+    <div style="margin: 0" th:include="footer"></div>
+</body>
+</html>
