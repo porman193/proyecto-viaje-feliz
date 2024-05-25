@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Destinos</title>
+    <link rel="stylesheet" type="text/css" href="css/styles_header.css">
+    <link rel="stylesheet" type="text/css" href="css/styles_footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="css/styles_destinations.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div style="margin: 0"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Principal</title>
+    <link rel="stylesheet" type="text/css" href="css/styles_header.css">
+</head>
+<body>
+<header id="main-header">
+    <div class="logo-container">
+        <img src="images/logo_viaje_feliz.png" alt="Logo">
+    </div>
+
+    <div class="middle-container">
+        <nav>
+            <h1>Viaje Feliz</h1>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#about">Sobre nosotros</a></li>
+                <li><a href="#contact">Contacto</a></li>
+                <li><a href="/destinations">Destinos</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="right-container">
+        <div>
+            <a class="button " href="/login">Iniciar sesión</a>
+        </div>
+        
+    </div>
+</header>
+<script>
+    window.addEventListener('scroll', function() {
+        const header = document.getElementById('main-header');
+        const scrollPosition = window.scrollY || window.pageYOffset;
+        const fixedClass = 'fixed';
+        const bodyFixedClass = 'fixed-header';
+
+        if (scrollPosition > 200) { // Ajusta este valor según cuándo quieras que se fije el header
+            header.classList.add(fixedClass);
+            document.body.classList.add(bodyFixedClass); // Añade clase al body para el padding-top
+        } else {
+            header.classList.remove(fixedClass);
+            document.body.classList.remove(bodyFixedClass); // Remueve clase del body
+        }
+    });
+</script>
+</body>
+</html>
+
+
+</div>
+<div class="search-container">
+    <div class="form-container">
+        <form>
+            <div class="input-container">
+                <label for="lugar">Lugar</label>
+                <input id="lugar" name="lugar" type="text" placeholder="Lugar">
+            </div>
+
+            <div class="input-container">
+                <label for="llegada">Llegada</label>
+                <input id="llegada" name="llegada" type="date" placeholder="Fecha Llegada">
+            </div>
+
+            <div class="input-container">
+                <label for="salida">Salida</label>
+                <input id="salida" name="salida" type="date" placeholder="Fecha Salida">
+            </div>
+
+            <div class="input-container">
+                <label for="personas">Personas</label>
+                <input id="personas" name="personas" type="text" placeholder="¿Cuántos?">
+            </div>
+            <button class="send-button" type="submit">Buscar</button>
+        </form>
+    </div>
+    <div class="destinations-container">
+        <div class="property-card">
+            <div class="property-img">
+                <img src="/images-properties/1" alt="Imagen de la Propiedad">
+            </div>
+            <div class="property-info">
+                <h2>Cabaña</h2>
+                <p>Barranquilla,Colombia</p>
+                <p>Precio noche base: $150.0</p>
+                <button>Reservar</button>
+            </div>
+        </div>
+        <div class="property-card">
+            <div class="property-img">
+                <img src="/images-properties/3" alt="Imagen de la Propiedad">
+            </div>
+            <div class="property-info">
+                <h2>Cabaña</h2>
+                <p>Medellín,Colombia</p>
+                <p>Precio noche base: $150.0</p>
+                <button>Reservar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin: 0"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/styles_footer.css">
+</head>
+<body>
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Sobre Nosotros</h3>
+            <p>Viaje Feliz es una empresa dedicada a ofrecer las mejores experiencias de viaje a los destinos más exóticos del mundo.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Enlaces Rápidos</h3>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/home">Sobre nosotros</a></li>
+                <li><a href="/home">Contacto</a></li>
+                <li><a href="/destinations">Destinos</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contáctanos</h3>
+            <p>Correo Electrónico: <a href="mailto:info@viajefeliz.com">info@viajefeliz.com</a></p>
+            <p>Teléfono: +123 456 7890</p>
+            <div class="social-media">
+                <a href="#"><img src="images/facebook_ico.png" alt="Facebook"></a>
+                <a href="#"><img src="images/twitter_ico.png" alt="Twitter"></a>
+                <a href="#"><img src="images/instagram_ico.png" alt="Instagram"></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Viaje Feliz. Todos los derechos reservados.</p>
+    </div>
+</footer>
+</body>
+</html></div>
+</body>
+</html>

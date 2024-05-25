@@ -131,6 +131,19 @@ nav{
     transition: all 0.3s;
 }
 
+.send-button{
+    background-color: #E38E39;
+    color: #432E1B;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 200px;
+    cursor: pointer;
+    font-size: 0.9em;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s;
+}
+
 .button:hover{
     background-color: #916226;
     color: white;
@@ -156,5 +169,10 @@ nav{
     text-decoration: underline white ;
 }
 
+.send-button:hover{
+    background-color: #9a6830;
+    color: white;
+    text-decoration: underline white ;
+}
 
 

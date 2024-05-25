@@ -11,31 +11,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div style="margin: 0" th:include="header"></div>
-    <div class="search-container">
-     <form>
-        <div class="input-container">
-            <label for="lugar">Lugar</label>
-            <input type="text" placeholder="Lugar">
-        </div>
+<div style="margin: 0" th:include="header"></div>
+<div class="search-container">
+    <div class="form-container">
+        <form>
+            <div class="input-container">
+                <label for="lugar">Lugar</label>
+                <input id="lugar" name="lugar" type="text" placeholder="Lugar">
+            </div>
 
-        <div class="input-container">
-            <label for="llegada">Llegada</label>
-            <input type="text" placeholder="Fecha Llegada">
+            <div class="input-container">
+                <label for="llegada">Llegada</label>
+                <input id="llegada" name="llegada" type="date" placeholder="Fecha Llegada">
+            </div>
+
+            <div class="input-container">
+                <label for="salida">Salida</label>
+                <input id="salida" name="salida" type="date" placeholder="Fecha Salida">
+            </div>
+
+            <div class="input-container">
+                <label for="personas">Personas</label>
+                <input id="personas" name="personas" type="text" placeholder="¿Cuántos?">
+            </div>
+            <button class="send-button" type="submit">Buscar</button>
+        </form>
+    </div>
+    <div class="destinations-container">
+        <div th:each="property : ${properties}" class="property-card">
+            <div class="property-img">
+                <img th:src="@{'/images-properties/' + ${property.fotografia.idFotografia}}" alt="Imagen de la Propiedad">
+            </div>
+            <div class="property-info">
+                <h2 th:text="${property.tipoPropiedad.tipo}"></h2>
+                <p th:text="${property.ciudadUbicacion.ciudad}+','+${property.paisUbicacion.pais}"></p>
+                <p th:text="'Precio noche base: $' + ${property.precioBase}"></p>
+                <button>Reservar</button>
+            </div>
         </div>
-        
-        <div class="input-container">
-            <label for="salida">Salida</label>
-            <input type="text" placeholder="Fecha Salida">
-        </div>
-        
-        <div class="input-container">
-            <label for="Personas">Personas</label>
-            <input type="text" placeholder="¿Cuántos?">
-        </div>
-        <button type="submit">Buscar</button>
-     </form>
-    </div>    
-    <div style="margin: 0" th:include="footer"></div>
+    </div>
+</div>
+<div style="margin: 0" th:include="footer"></div>
 </body>
 </html>

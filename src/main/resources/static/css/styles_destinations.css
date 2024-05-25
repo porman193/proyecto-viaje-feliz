@@ -2,40 +2,118 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: content-box;
+    background-color: #F4EFEC;
 }
 
 .search-container{
     margin: 10px;
     width: 100%;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
-.search-container form { 
-    border: solid 1px;
-    border-radius:  200px;
+.form-container {
+    border: solid 1px rgba(75, 74, 74, 0.85);
+    border-radius:  0px 15px 0px 15px;
     padding: 10px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 80%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-container form {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 60%;
+    text-decoration: none;
+    width: 100%;
+    padding: 5px;
 }
+
 
 .input-container{
     width: 100%;
     display: flex;
+    border-right: solid 1px;
     align-items: center;
-    flex-direction: column; 
+    flex-direction: column;
+    margin: 5px;
 }
 
 .input-container label{
     margin-bottom: 5px;
-    text-align: right;
+    text-align: left;
     text-decoration: none;
+    color: #513D27;
+    width: 100%;
 }
 
 .input-container input{
     padding: 5px;
     border: none;
-    border-bottom: solid 1px ;
+    transition: all 0.5s ;
+    background-color: #F4EFEC;
+}
+
+.input-container input:focus, .input-container input:hover{
+    padding: 5px;
+    border-color: #9F6E2F;
+    border-radius: 200px;
+}
+
+.destinations-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.property-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    margin: 20px;
+}
+
+.property-img img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.property-info {
+    padding: 20px;
+}
+
+.property-info h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.property-info p {
+    margin: 5px 0;
+}
+
+.property-info button {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.property-info button:hover {
+    background-color: #218838;
 }

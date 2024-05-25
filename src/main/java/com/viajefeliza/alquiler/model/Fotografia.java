@@ -32,4 +32,3 @@ public class Fotografia {
         this.fotografia = fotografia;
     }
 }
-
