@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalle de la Propiedad</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles_header.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles_footer.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles_property_detail.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div style="margin: 0" th:include="header"></div>
+<div class="property-detail-container">
+    <div class="property-img">
+        <img th:src="@{'/images-properties/' + ${property.fotografia.idFotografia}}" alt="Imagen de la Propiedad">
+    </div>
+    <div class="property-info">
+        <h2 th:text="${property.tipoPropiedad.tipo}"></h2>
+        <p th:text="'Habitaciones: ' + ${property.numHabitaciones}"></p>
+        <p th:text="'Baños: ' + ${property.numBanos}"></p>
+        <p th:text="'Capacidad: ' + ${property.capacidad} + ' personas'"></p>
+        <p th:text="'Dirección: ' + ${property.ubicacionDireccion}"></p>
+        <p th:text="'Precio: $' + ${property.precioBase}"></p>
+    </div>
+</div>
+<div style="margin: 0" th:include="footer"></div>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Destinos</title>
     <link rel="stylesheet" type="text/css" href="css/styles_header.css">
@@ -46,7 +46,7 @@
                 <h2 th:text="${property.tipoPropiedad.tipo}"></h2>
                 <p th:text="${property.ciudadUbicacion.ciudad}+','+${property.paisUbicacion.pais}"></p>
                 <p th:text="'Precio noche base: $' + ${property.precioBase}"></p>
-                <button>Reservar</button>
+                <a th:href="@{'/property/' + ${property.idPropiedad}}" class="button" style="padding: 5px;font-size: 1.3em">Reservar</a>
             </div>
         </div>
     </div>
