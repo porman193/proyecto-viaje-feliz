@@ -20,7 +20,7 @@ public class AppController {
 
     @GetMapping("/home")
     public String home() {
-        return "indexAdmin";
+        return "index";
     }
     @GetMapping("/login")
     public String showLoginForm() {
@@ -30,13 +30,13 @@ public class AppController {
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "indexAdmin";
+        return "index";
     }
     @PostMapping("/login")
     public String processLogin(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
         if (authService.login(username, password)) {
             System.out.println("Usuario autenticado: " + session.getAttribute("userAuth"));
-            return "indexAdmin"; // Redirecciona a una página después del inicio de sesión exitoso
+            return "index"; // Redirecciona a una página después del inicio de sesión exitoso
         } else {
             model.addAttribute("error", "Credenciales incorrectas");
             return "login/login"; // Muestra la página de inicio de sesión con un mensaje de error
@@ -57,6 +57,6 @@ public class AppController {
         model.addAttribute("userId", userId);
 
         // Devolver la vista donde se mostrarán los datos de la sesión
-        return "indexAdmin";
+        return "index";
     }
 }
