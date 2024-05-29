@@ -1,11 +1,15 @@
 package com.viajefeliza.alquiler.controller;
 
-import com.viajefeliza.alquiler.services.AuthService;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.viajefeliza.alquiler.services.AuthService;
+
+import jakarta.servlet.http.HttpSession;
 
 
 
@@ -16,7 +20,7 @@ public class AppController {
 
     @GetMapping("/home")
     public String home() {
-        return "index";
+        return "indexAdmin";
     }
     @GetMapping("/login")
     public String showLoginForm() {
@@ -26,13 +30,13 @@ public class AppController {
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "index";
+        return "indexAdmin";
     }
     @PostMapping("/login")
     public String processLogin(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
         if (authService.login(username, password)) {
             System.out.println("Usuario autenticado: " + session.getAttribute("userAuth"));
-            return "index"; // Redirecciona a una página después del inicio de sesión exitoso
+            return "indexAdmin"; // Redirecciona a una página después del inicio de sesión exitoso
         } else {
             model.addAttribute("error", "Credenciales incorrectas");
             return "login/login"; // Muestra la página de inicio de sesión con un mensaje de error
@@ -53,6 +57,6 @@ public class AppController {
         model.addAttribute("userId", userId);
 
         // Devolver la vista donde se mostrarán los datos de la sesión
-        return "index";
+        return "indexAdmin";
     }
 }

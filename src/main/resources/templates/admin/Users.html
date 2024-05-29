@@ -22,18 +22,18 @@
         </tr>
         </thead>
         <tbody>
-        <!-- Ejemplo de usuario -->
-        <tr>
-            <td>1</td>
-            <td>Juan Pérez</td>
-            <td>juan.perez@example.com</td>
-            <td>Usuario</td>
-            <td>
-                <a href="/admin/edit-user/1" class="button">Editar</a>
-                <a href="/admin/delete-user/1" class="button">Eliminar</a>
-            </td>
-        </tr>
-        <!-- Añadir más usuarios aquí -->
+            <!-- Itera sobre la lista de usuarios -->
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}">1</td>
+                <td th:text="${user.name}">Juan Pérez</td>
+                <td th:text="${user.email}">juan.perez@example.com</td>
+                <td th:text="${user.role}">Usuario</td>
+                <td>
+                    <!-- Enlaces para editar y eliminar usuarios -->
+                    <a th:href="@{'/admin/edit-user/' + ${user.id}}" class="button">Editar</a>
+                    <a th:href="@{'/admin/delete-user/' + ${user.id}}" class="button">Eliminar</a>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>
