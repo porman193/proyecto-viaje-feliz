@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - Administrador</title>
+    <link rel="stylesheet" type="text/css" href="css/styles_header.css">
+    <link rel="stylesheet" type="text/css" href="css/styles_admin.css">
+    <link rel="stylesheet" type="text/css" href="css/styles_footer.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div style="margin: 0" th:include="headerAdmin"></div>
+    <div class="container">
+        <section class="about-section" id="about">
+            <div class="img-about-container">
+                <img src="images/about_img.jpeg" alt="About">
+            </div>
+            <div class="text-about-container">
+                <h1>Bienvenido a Viaje Feliz</h1>
+                <p>En esta página podrás encontrar información sobre los destinos turísticos más populares del mundo.</p>
+                <p>Además, podrás ver opiniones de otros usuarios y dejar tus propias opiniones.</p>
+                <p>¡Esperamos que disfrutes tu visita!</p>
+                <br>
+                <a href="/destinos" class="button">Ver destinos</a>
+            </div>
+        </section>
+        <section class="contact-section" id="contact">
+            <div class="text-contact-container">
+                <h1>Contáctanos</h1>
+                <p>Si tienes alguna duda o sugerencia, no dudes en contactarnos.</p>
+                <p>Estamos disponibles las 24 horas del día, los 7 días de la semana.</p>
+                <p><strong>Dirección:</strong> Calle Falsa 123, Ciudad, País</p>
+                <p><strong>Teléfono:</strong> +123 456 7890</p>
+                <p><strong>Correo Electrónico:</strong> <a href="mailto:info@viajefeliz.com">info@viajefeliz.com</a></p>
+            </div>
+            <div class="img-contact-container">
+                <img src="images/contacto.jpeg" alt="Contact">
+            </div>
+        </section>
+        <div style="margin: 0" th:include="footer"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Header - Administrador</title>
+    <link rel="stylesheet" type="text/css" href="css/styles_header.css">
+</head>
+<body>
+    <header id="main-header">
+        <div class="logo-container">
+            <img th:src="@{/images/logo_viaje_feliz.png}" alt="Logo">
+        </div>
+
+        <div class="admin-header">
+            <h1>Panel de Administración</h1>
+            <div class="admin-buttons">
+                <a href="/admin/reservations" class="button">Gestión de Reservas</a>
+                <a href="/admin/properties" class="button">Gestión de Propiedades</a>
+                <a href="/admin/comments" class="button">Gestión de Comentarios</a>
+                <div class="dropdown">
+                    <button class="dropdown-button">Gestión de Usuarios y Propiedades</button>
+                    <div class="dropdown-content">  
+                        <a href="/admin/users">Gestión de Usuarios</a>
+                        <a href="/admin/properties">Gestión de Propiedades</a>
+                        <a href="/admin/comments">Gestión de Comentarios</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
