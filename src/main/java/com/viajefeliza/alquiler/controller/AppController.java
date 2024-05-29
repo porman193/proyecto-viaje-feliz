@@ -1,5 +1,6 @@
 package com.viajefeliza.alquiler.controller;
 
+import com.viajefeliza.alquiler.model.RolUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,12 +36,17 @@ public class AppController {
     @PostMapping("/login")
     public String processLogin(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
         if (authService.login(username, password)) {
-            System.out.println("Usuario autenticado: " + session.getAttribute("userAuth"));
-            return "index"; // Redirecciona a una página después del inicio de sesión exitoso
-        } else {
-            model.addAttribute("error", "Credenciales incorrectas");
-            return "login/login"; // Muestra la página de inicio de sesión con un mensaje de error
+            RolUsuario rol= (RolUsuario) session.getAttribute("userRol");
+            if("Administrador".equals(rol.getRol())){
+                System.out.println("Usuario admin autenticado: " + session.getAttribute("userAuth"));
+                return "admin/indexAdmin";
+            }else if("Cliente".equals(rol.getRol())){
+                System.out.println("Usuario cliente autenticado: " + session.getAttribute("userAuth"));
+                return "index";
+            }
         }
+        model.addAttribute("error", "Credenciales incorrectas");
+        return "login/login"; // Muestra la página de inicio de sesión con un mensaje de error
     }
     @GetMapping("/mostrar-datos-sesion")
     public String mostrarDatosSesion(HttpSession session, Model model) {

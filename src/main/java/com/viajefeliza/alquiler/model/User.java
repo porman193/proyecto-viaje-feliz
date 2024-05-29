@@ -17,6 +17,10 @@ public class User {
     @Column(unique = true)
     private String email;
 
+    @ManyToOne
+    @JoinColumn(name = "id_rol", nullable = false)
+    private RolUsuario rolUsuario;
+
     private String contrasena;
 
     public User() {
@@ -85,6 +89,14 @@ public class User {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    public RolUsuario getRolUsuario() {
+        return rolUsuario;
+    }
+
+    public void setRolUsuario(RolUsuario rolUsuario) {
+        this.rolUsuario = rolUsuario;
     }
 }
 
