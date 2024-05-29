@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Usuarios</title>
+    <link rel="stylesheet" type="text/css" href="css/styles_admin.css">
+</head>
+<body>
+<div class="admin-header">
+    <h1>Panel de Administración - Usuarios</h1>
+</div>
+<div class="admin-container">
+    <h2>Listado de Usuarios</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Ejemplo de usuario -->
+        <tr>
+            <td>1</td>
+            <td>Juan Pérez</td>
+            <td>juan.perez@example.com</td>
+            <td>Usuario</td>
+            <td>
+                <a href="/admin/edit-user/1" class="button">Editar</a>
+                <a href="/admin/delete-user/1" class="button">Eliminar</a>
+            </td>
+        </tr>
+        <!-- Añadir más usuarios aquí -->
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
