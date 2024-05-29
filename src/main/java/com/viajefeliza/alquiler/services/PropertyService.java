@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class PropertyService {
@@ -22,30 +22,36 @@ public class PropertyService {
         return propertyRepo.findAll();
     }
 
-    public float calculatePrice(Property property, LocalDate arrivalDate, LocalDate departureDate) {
-        float basePrice = property.getPrecioBase();
-        float finalPrice = basePrice;
+    public List<Property> searchProperties(String lugar, Date llegada, Date salida, Integer personas) {
+        // Crear instancias de listas para almacenar los resultados
+        List<Property> propertiesByCapacity = new ArrayList<>();
+        List<Property> propertiesByDate = new ArrayList<>();
+        List<Property> propertiesByPlace = new ArrayList<>();
 
-        boolean isHighSeason = isHighSeason(arrivalDate, departureDate);
-        if (isHighSeason) {
-            finalPrice *= 1.30;
-        } else {
-            finalPrice *= 1.10;
+        // Realizar las consultas y almacenar los resultados en las listas correspondientes
+        if (personas != null) {
+            propertiesByCapacity = propertyRepo.findPropertiesByCapacity(personas);
+        }
+        if (llegada != null && salida != null) {
+            propertiesByDate = propertyRepo.findPropertiesByDate(llegada, salida);
+        }
+        if (lugar != null && !lugar.isEmpty()) {
+            propertiesByPlace = propertyRepo.findPropertiesByPlace(lugar);
         }
 
-        return finalPrice;
+        // Combinar las listas y eliminar duplicados utilizando un Set
+        Set<Property> combinedProperties = new HashSet<>();
+        combinedProperties.addAll(propertiesByCapacity);
+        combinedProperties.addAll(propertiesByDate);
+        combinedProperties.addAll(propertiesByPlace);
+
+        // Convertir el Set de vuelta a una List y devolverla
+        return new ArrayList<>(combinedProperties);
     }
 
-    private boolean isHighSeason(LocalDate arrivalDate, LocalDate departureDate) {
-        // Check if the dates fall within the high season periods
-        LocalDate highSeasonStart1 = LocalDate.of(arrivalDate.getYear(), Month.DECEMBER, 15);
-        LocalDate highSeasonEnd1 = LocalDate.of(arrivalDate.getYear() + 1, Month.JANUARY, 15);
-        LocalDate highSeasonStart2 = LocalDate.of(arrivalDate.getYear(), Month.JUNE, 15);
-        LocalDate highSeasonEnd2 = LocalDate.of(arrivalDate.getYear(), Month.JULY, 15);
-
-        // Easter week and public holidays are omitted for simplicity
-
-        return (arrivalDate.isAfter(highSeasonStart1) && departureDate.isBefore(highSeasonEnd1))
-                || (arrivalDate.isAfter(highSeasonStart2) && departureDate.isBefore(highSeasonEnd2));
+    public Boolean isPropertyReserved(Property property, Date arrivalDate, Date departureDate) {
+        List<Property> properties = propertyRepo.findPropertiesByDate(arrivalDate, departureDate);
+        return !properties.contains(property);
     }
+
 }

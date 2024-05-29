@@ -14,7 +14,7 @@
 <div style="margin: 0" th:include="header"></div>
 <div class="search-container">
     <div class="form-container">
-        <form>
+        <form action="#" th:action="@{/search}" method="post">
             <div class="input-container">
                 <label for="lugar">Lugar</label>
                 <input id="lugar" name="lugar" type="text" placeholder="Lugar">

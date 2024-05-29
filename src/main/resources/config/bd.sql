@@ -4,6 +4,12 @@ CREATE DATABASE IF NOT EXISTS viajefeliz;
 
 USE viajefeliz;
 
+CREATE TABLE IF NOT EXISTS rol_usuario (
+    id_rol INT AUTO_INCREMENT,
+    rol VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id_rol),
+    UNIQUE KEY unique_rol (rol)
+);
 CREATE TABLE IF NOT EXISTS usuario (
     identificacion INT NOT NULL,
     direccion VARCHAR(255),
@@ -12,8 +18,13 @@ CREATE TABLE IF NOT EXISTS usuario (
     apellidos VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL,
     contrasena VARCHAR(255) NOT NULL,
-    PRIMARY KEY(identificacion)
+    id_rol INT NOT NULL,
+    UNIQUE KEY unique_email (email),
+    PRIMARY KEY(identificacion),
+    FOREIGN KEY (id_rol)
+    REFERENCES rol_usuario(id_rol)
 );
+
 CREATE TABLE IF NOT EXISTS telefonos_usuario (
     id_usuario INT NOT NULL,
     telefono VARCHAR(20) NOT NULL,
@@ -27,13 +38,6 @@ CREATE TABLE IF NOT EXISTS temporada (
     porcentaje_aumento FLOAT NOT NULL,
     PRIMARY KEY(id_temporada, temporada),
     UNIQUE KEY unique_temporada (temporada)
-);
-CREATE TABLE IF NOT EXISTS pagos (
-    id_pago INT AUTO_INCREMENT,
-    fecha_pago DATE NOT NULL,
-    monto FLOAT NOT NULL,
-    metodo_pago VARCHAR(255) NOT NULL,
-    PRIMARY KEY(id_pago, fecha_pago)
 );
 CREATE TABLE IF NOT EXISTS fotografia (
     id_fotografia INT NOT NULL,
@@ -102,46 +106,23 @@ CREATE TABLE  IF NOT EXISTS reserva (
     num_personas INT NOT NULL,
     id_usuario INT NOT NULL,
     id_temporada INT NOT NULL,
-    id_pago INT NOT NULL,
+    id_propiedad INT NOT NULL,
     PRIMARY KEY(id_reserva),
     FOREIGN KEY (id_usuario)
  REFERENCES usuario(identificacion),
     FOREIGN KEY (id_temporada)
  REFERENCES temporada(id_temporada),
-    FOREIGN KEY (id_pago)
- REFERENCES pagos(id_pago)
+    FOREIGN KEY (id_propiedad)
+REFERENCES propiedad(id_propiedad)
 );
 
-INSERT INTO region_ubicacion (region) VALUES ('Caribe');
-INSERT INTO region_ubicacion (region) VALUES ('Andina');
-INSERT INTO region_ubicacion (region) VALUES ('Pacífica');
+CREATE TABLE IF NOT EXISTS pagos (
+    id_pago INT AUTO_INCREMENT,
+    fecha_pago DATE NOT NULL,
+    id_reserva INT NOT NULL,
+    monto FLOAT NOT NULL,
+    metodo_pago VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id_pago, id_reserva),
+    FOREIGN KEY (id_reserva) REFERENCES reserva(id_reserva)
+);
 
-INSERT INTO ciudad_ubicacion (ciudad) VALUES ('Barranquilla');
-INSERT INTO ciudad_ubicacion (ciudad) VALUES ('Medellín');
-INSERT INTO ciudad_ubicacion (ciudad) VALUES ('Cali');
-
-INSERT INTO pais_ubicacion (pais) VALUES ('Colombia');
-
--- Inserta tipo cabaña
-INSERT INTO tipo_propiedad (tipo) VALUES ('Cabaña');
-
--- Inserta tipo casa
-INSERT INTO tipo_propiedad (tipo) VALUES ('Casa');
-
-INSERT INTO propiedad (id_propiedad, num_habitaciones, precio_base, acepta_mascotas, num_banos, calefaccion, aire_acondicionado, ubicacion_direccion, id_tipo_propiedad, id_pais_ubi, id_ciudad_ubi, id_region_ubi, id_fotografia, capacidad)
-VALUES (1, 3, 150.00, TRUE, 2, TRUE, FALSE, 'Calle Principal 123', 1, 1, 1, 1, 1, 6);
-
-INSERT INTO usuario (identificacion, direccion, nacionalidad, nombres, apellidos, email, contrasena)
-VALUES (123456789, 'Calle Principal 123', 'Colombiano', 'Juan', 'Pérez', 'juan@example.com', 'contraseña123');
-
-INSERT INTO telefonos_usuario (id_usuario, telefono)
-VALUES (123456789, '1234567890'); -- Teléfono para el hogar
-
-INSERT INTO telefonos_usuario (id_usuario, telefono)
-VALUES (123456789, '0987654321'); -- Teléfono para el trabajo
-
--- Inserta temporada alta
-INSERT INTO temporada (temporada,porcentaje_aumento) VALUES ('Alta', 0.25);
-
--- Inserta temporada baja
-INSERT INTO temporada (temporada,porcentaje_aumento) VALUES ('Baja', 0.10);

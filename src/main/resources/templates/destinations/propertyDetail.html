@@ -13,18 +13,92 @@
 <body>
 <div style="margin: 0" th:include="header"></div>
 <div class="property-detail-container">
-    <div class="property-img">
-        <img th:src="@{'/images-properties/' + ${property.fotografia.idFotografia}}" alt="Imagen de la Propiedad">
-    </div>
+
     <div class="property-info">
-        <h2 th:text="${property.tipoPropiedad.tipo}"></h2>
-        <p th:text="'Habitaciones: ' + ${property.numHabitaciones}"></p>
-        <p th:text="'Baños: ' + ${property.numBanos}"></p>
-        <p th:text="'Capacidad: ' + ${property.capacidad} + ' personas'"></p>
-        <p th:text="'Dirección: ' + ${property.ubicacionDireccion}"></p>
-        <p th:text="'Precio: $' + ${property.precioBase}"></p>
+        <div class="property-img">
+            <img th:src="@{'/images-properties/' + ${property.fotografia.idFotografia}}" alt="Imagen de la Propiedad">
+        </div>
+        <div>
+            <h2 th:text="${property.tipoPropiedad.tipo}"></h2>
+            <p th:text="'Habitaciones: ' + ${property.numHabitaciones}"></p>
+            <p th:text="'Baños: ' + ${property.numBanos}"></p>
+            <p th:text="'Capacidad: ' + ${property.capacidad} + ' personas'"></p>
+            <p th:text="'Dirección: ' + ${property.ubicacionDireccion}"></p>
+            <p th:text="'Precio: $' + ${property.precioBase}"></p>
+        </div>
+    </div>
+    <div class="property-reservation">
+            <h3>Reservar</h3>
+            <form action="#" th:action="@{/reservar}" method="post">
+                <input type="hidden" name="propertyId" th:value="${property.idPropiedad}">
+                <div class="input-container">
+                    <label for="llegada">Llegada</label>
+                    <input id="llegada" name="llegada" type="date" placeholder="Fecha Llegada" required>
+                </div>
+                <div class="input-container">
+                    <label for="salida">Salida</label>
+                    <input id="salida" name="salida" type="date" placeholder="Fecha Salida" required>
+                </div>
+                <div class="input-container">
+                    <label for="personas">Personas</label>
+                    <input id="personas" name="personas" type="text" placeholder="¿Cuántos?" required>
+                </div>
+                <div class="input-container">
+                    <label for="precio-total">Precio Total</label>
+                    <input id="precio-total" name="precio-total" type="text" placeholder="Precio Total" disabled>
+                    <p>Precio base*(dias de hospedaje)*%temporada</p>
+                </div>
+                <button class="send-button"  type="submit">Reservar</button>
+            </form>
     </div>
 </div>
 <div style="margin: 0" th:include="footer"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script th:if="${error != null}">
+    // Función para mostrar el mensaje de alerta
+    function showAlert(message) {
+        alert(message);
+    }
+    // Mapa de mensajes de error
+    var errorMessageMap = {
+        "fecha": "La fecha de llegada no puede ser posterior a la fecha de salida.",
+        "capacidad": "La cantidad de personas excede la capacidad de la propiedad.",
+        "reservada": "La propiedad ya está reservada para las fechas seleccionadas."
+    };
+
+    // Obtener el mensaje de error correspondiente
+    let error = "[[${error}]]";
+    var errorMessage = errorMessageMap[error];
+    // Mostrar el mensaje de alerta
+    showAlert(errorMessage);
+
+</script>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        $('#llegada, #salida').change(function () {
+            var llegada = $('#llegada').val();
+            var salida = $('#salida').val();
+            /*<![CDATA[*/
+            var propertyId = [[${property.idPropiedad}]];
+            /*]]>*/
+            console.log(llegada, salida)
+
+            // Realiza una solicitud AJAX al backend para obtener el precio total
+            $.ajax({
+                type: 'GET',
+                url: '/calcular-precio-total', // Ruta de tu controlador para calcular el precio total
+                data: {
+                    propertyId: propertyId,
+                    llegada: llegada,
+                    salida: salida
+                },
+                success: function (data) {
+                    // Actualiza el valor del campo de precio total con el valor devuelto por el backend
+                    $('#precio-total').val(data);
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

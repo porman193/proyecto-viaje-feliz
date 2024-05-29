@@ -44,6 +44,10 @@ public class Reserva {
     @JoinColumn(name = "id_pago", nullable = false)
     private Pagos pagos;
 
+    @ManyToOne
+    @JoinColumn(name = "id_propiedad", nullable = false)
+    private Property property;
+
     public Integer getIdReserva() {
         return idReserva;
     }

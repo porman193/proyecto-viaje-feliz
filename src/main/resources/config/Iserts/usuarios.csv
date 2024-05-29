@@ -1,0 +1,31 @@
+identificacion,direccion,nacionalidad,nombres,apellidos,email,contrasena,id_rol
+1,"Calle 123, Ciudad ABC","Mexicana","Juan","Perez","juan@example.com","password123",1
+2,"Av. Principal 456, Ciudad XYZ","Colombiana","Maria","Gonzalez","maria@example.com","securepass456",2
+3,"Rua Principal 789, Cidade LMN","Brasileña","Pedro","Silva","pedro@example.com","strongpassword789",1
+4,"123 Main St, City PQR","American","Emily","Smith","emily@example.com","safePassword123",1
+5,"Rue Principale 321, Ville STU","Francesa","Sophie","Lambert","sophie@example.com","secretPass321",2
+6,"Rua Principal 456, Cidade NOP","Brasileña","Lucas","Santos","lucas@example.com","lucas123",1
+7,"Av. Central 789, Ciudad QRS","Mexicana","Ana","Hernandez","ana@example.com","ana456",1
+8,"123 Elm St, City TUV","American","Michael","Johnson","michael@example.com","mikePass123",2
+9,"Rue de la Fontaine 456, Ville WXY","Francesa","Claire","Dubois","claire@example.com","clairePass456",1
+10,"Calle Principal 789, Ciudad ZAB","Colombiana","Andres","Lopez","andres@example.com","andres789",1
+11,"Av. Central 123, Ciudad CDE","Mexicana","Roberto","Martinez","roberto@example.com","roberto456",2
+12,"Rua do Sol 456, Cidade EFG","Brasileña","Julia","Oliveira","julia@example.com","juliaPass123",1
+13,"123 Oak St, City HIJ","American","Sarah","Brown","sarah@example.com","sarah789",1
+14,"Avenue des Fleurs 789, Ville KLM","Francesa","Pierre","Leroy","pierre@example.com","pierrePass123",2
+15,"Calle del Sol 456, Ciudad NOP","Colombiana","Camila","Ramirez","camila@example.com","camila456",1
+16,"Rua da Praia 789, Cidade QRS","Brasileña","Gabriel","Silveira","gabriel@example.com","gabrielPass123",1
+17,"456 Pine St, City TUV","American","Jessica","Taylor","jessica@example.com","jessicaPass456",2
+18,"Rue de la Mer 789, Ville WXY","Francesa","Thomas","Martin","thomas@example.com","thomas123",1
+19,"Calle de la Luna 123, Ciudad ZAB","Mexicana","Carla","Garcia","carla@example.com","carla789",1
+20,"Av. Principal 456, Ciudad CDE","Colombiana","Diego","Herrera","diego@example.com","diegoPass123",2
+21,"Rua da Liberdade 789, Cidade EFG","Brasileña","Amanda","Sousa","amanda@example.com","amanda789",1
+22,"123 Maple St, City HIJ","American","David","Clark","david@example.com","davidPass123",1
+23,"Avenue du Soleil 456, Ville KLM","Francesa","Nicolas","Dupont","nicolas@example.com","nicolas456",2
+24,"Calle Principal 789, Ciudad NOP","Colombiana","Laura","Castro","laura@example.com","lauraPass123",1
+25,"Rua das Flores 456, Cidade QRS","Brasileña","Fernanda","Almeida","fernanda@example.com","fernanda456",1
+26,"789 Cedar St, City TUV","American","Daniel","White","daniel@example.com","danielPass123",2
+27,"Rue des Lilas 789, Ville WXY","Francesa","Mathieu","Roussel","mathieu@example.com","mathieu123",1
+28,"Calle del Rio 123, Ciudad ZAB","Mexicana","Gustavo","Vargas","gustavo@example.com","gustavo789",1
+29,"Av. Principal 456, Ciudad CDE","Colombiana","Sofia","Santos","sofia@example.com","sofiaPass123",2
+30,"Rua da Esperança 789, Cidade EFG","Brasileña","Luiz","Fernandes","luiz@example.com","luiz456",1
