@@ -20,6 +20,7 @@ public class AuthService {
         User user = userRepo.findByEmail(username);
         if(user != null && user.getContrasena().equals(password)){
             session.setAttribute("userAuth", user);
+            session.setAttribute("userRol", user.getRolUsuario());
             return true;
         };
         return false;
