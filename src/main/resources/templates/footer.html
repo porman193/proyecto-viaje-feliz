@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/styles_footer.css}">
+    <title>Footer - Administrador</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles_footer.css">
 </head>
 <body>
 <footer>
@@ -15,8 +16,8 @@
             <h3>Enlaces Rápidos</h3>
             <ul>
                 <li><a href="/home">Home</a></li>
-                <li><a href="/home">Sobre nosotros</a></li>
-                <li><a href="/home">Contacto</a></li>
+                <li><a href="#about">Sobre nosotros</a></li>
+                <li><a href="#contact">Contacto</a></li>
                 <li><a href="/destinations">Destinos</a></li>
             </ul>
         </div>
@@ -34,7 +35,6 @@
                 <a href="#">
                     <img th:src="@{/images/instagram_ico.png}" alt="Instagram">
                 </a>
-
             </div>
         </div>
     </div>

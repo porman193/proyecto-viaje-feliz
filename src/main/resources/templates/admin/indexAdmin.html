@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Inicio - Administrador</title>
-    <link rel="stylesheet" type="text/css" href="css/styles_header.css">
-    <link rel="stylesheet" type="text/css" href="css/styles_admin.css">
-    <link rel="stylesheet" type="text/css" href="css/styles_footer.css">
+    <link rel="stylesheet" type="text/css" href="@{/css/styles_header.css}">
+    <link rel="stylesheet" type="text/css" href="@{/css/styles_admin.css}">
+    <link rel="stylesheet" type="text/css" href="@{/css/styles_footer.css}">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,11 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div style="margin: 0" th:include="headerAdmin"></div>
+    <div th:replace="admin/headerAdmin :: header"></div>
     <div class="container">
         <section class="about-section" id="about">
             <div class="img-about-container">
-                <img src="images/about_img.jpeg" alt="About">
+                <img src="@{/images/about_img.jpeg}" alt="About">
             </div>
             <div class="text-about-container">
                 <h1>Bienvenido a Viaje Feliz</h1>
@@ -38,10 +38,10 @@
                 <p><strong>Correo Electrónico:</strong> <a href="mailto:info@viajefeliz.com">info@viajefeliz.com</a></p>
             </div>
             <div class="img-contact-container">
-                <img src="images/contacto.jpeg" alt="Contact">
+                <img src="@{/images/contacto.jpeg}" alt="Contact">
             </div>
         </section>
-        <div style="margin: 0" th:include="footer"></div>
+        <div th:replace="admin/footerAdmin :: footer"></div>
     </div>
 </body>
 </html>

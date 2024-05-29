@@ -11,8 +11,6 @@ import com.viajefeliza.alquiler.services.AuthService;
 
 import jakarta.servlet.http.HttpSession;
 
-
-
 @Controller
 public class AppController {
     @Autowired
@@ -22,41 +20,46 @@ public class AppController {
     public String home() {
         return "index";
     }
+    
     @GetMapping("/login")
     public String showLoginForm() {
         return "login/login";
     }
-
+    
+    @GetMapping("/admin")
+    public String adminPage() {
+        return "admin/indexAdmin";
+    }
+    
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "index";
     }
+    
     @PostMapping("/login")
     public String processLogin(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
         if (authService.login(username, password)) {
+            session.setAttribute("userAuth", username); // Asegúrate de establecer el atributo de sesión
             System.out.println("Usuario autenticado: " + session.getAttribute("userAuth"));
-            return "index"; // Redirecciona a una página después del inicio de sesión exitoso
+            return "admin/indexAdmin";
         } else {
             model.addAttribute("error", "Credenciales incorrectas");
-            return "login/login"; // Muestra la página de inicio de sesión con un mensaje de error
+            return "login/login";
         }
     }
+    
     @GetMapping("/mostrar-datos-sesion")
     public String mostrarDatosSesion(HttpSession session, Model model) {
-        // Obtener datos de la sesión
         String username = (String) session.getAttribute("userAuth");
         String userId = (String) session.getAttribute("nombres");
-
-        // Imprimir los datos en la consola
+        
         System.out.println("Username: " + username);
         System.out.println("UserID: " + userId);
-
-        // Agregar los datos al modelo para que puedan ser mostrados en la vista
+        
         model.addAttribute("username", username);
         model.addAttribute("userId", userId);
-
-        // Devolver la vista donde se mostrarán los datos de la sesión
+        
         return "index";
     }
 }
