@@ -62,3 +62,14 @@
 .admin-buttons .button:hover {
     background-color: #333; /* Naranja más claro al pasar el ratón */
 }
+.logo-backup {
+    position: absolute;
+    top: 20px; /* Distancia desde la parte superior */
+    right: 20px; /* Distancia desde el borde derecho */
+}
+
+.logo-backup img {
+    width: 40px; /* Ancho del icono de backup */
+    height: auto; /* Altura automática para mantener la proporción */
+    border-radius: 20p;
+}
