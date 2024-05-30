@@ -23,6 +23,10 @@ public class Pagos {
     @Column(name = "metodo_pago", nullable = false)
     private String metodoPago;
 
+    @ManyToOne
+    @JoinColumn(name = "id_reserva", nullable = false)
+    private Reserva reserva;
+
     public Integer getIdPago() {
         return idPago;
     }
@@ -53,6 +57,14 @@ public class Pagos {
 
     public void setMetodoPago(String metodoPago) {
         this.metodoPago = metodoPago;
+    }
+
+    public Reserva getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
     }
 }
 

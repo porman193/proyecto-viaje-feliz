@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS propiedad (
 CREATE TABLE  IF NOT EXISTS reserva (
     id_reserva INT AUTO_INCREMENT,
     comentarios_encuesta VARCHAR(255),
-    calif_encuesta INT NOT NULL,
+    calif_encuesta INT,
     fecha_ini DATE NOT NULL,
     fecha_fin DATE NOT NULL,
     precio_total FLOAT NOT NULL,

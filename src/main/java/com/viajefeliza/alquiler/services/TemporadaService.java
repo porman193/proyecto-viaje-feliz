@@ -1,5 +1,6 @@
 package com.viajefeliza.alquiler.services;
 
+import com.viajefeliza.alquiler.model.Temporada;
 import com.viajefeliza.alquiler.repositories.TemporadaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -86,5 +87,17 @@ public class TemporadaService {
         int day = ((h + l - 7 * m + 114) % 31) + 1;
 
         return new GregorianCalendar(year, month - 1, day);
+    }
+
+    public void saveTemporada(Temporada temporada) {
+        temporadaRepo.save(temporada);
+    }
+
+    public Temporada getTemporadaById(Integer id) {
+        return temporadaRepo.findById(id).orElse(null);
+    }
+
+    public Temporada findByTemporada(String temporada) {
+        return temporadaRepo.findByTemporada(temporada);
     }
 }

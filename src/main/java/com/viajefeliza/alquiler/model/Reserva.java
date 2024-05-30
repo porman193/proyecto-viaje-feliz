@@ -14,7 +14,7 @@ public class Reserva {
     @Column(name = "comentarios_encuesta")
     private String comentariosEncuesta;
 
-    @Column(name = "calif_encuesta", nullable = false)
+    @Column(name = "calif_encuesta")
     private Integer califEncuesta;
 
     @Column(name = "fecha_ini", nullable = false)
@@ -41,12 +41,16 @@ public class Reserva {
     private Temporada temporada;
 
     @ManyToOne
-    @JoinColumn(name = "id_pago", nullable = false)
-    private Pagos pagos;
-
-    @ManyToOne
     @JoinColumn(name = "id_propiedad", nullable = false)
     private Property property;
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
+    }
 
     public Integer getIdReserva() {
         return idReserva;
@@ -128,12 +132,5 @@ public class Reserva {
         this.temporada = temporada;
     }
 
-    public Pagos getPagos() {
-        return pagos;
-    }
-
-    public void setPagos(Pagos pagos) {
-        this.pagos = pagos;
-    }
 }
 

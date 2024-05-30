@@ -28,8 +28,8 @@ public class ReservaService {
     }
     public float calculatePrice(Property property, Date arrivalDate, Date departureDate) {
         float finalPrice = 0;
-        float highSeasonPrice = temporadaRepo.findByTemporada("Alta").getPorcentajeAumento();
-        float lowSeasonPrice = temporadaRepo.findByTemporada("Baja").getPorcentajeAumento();
+        float highSeasonPrice = property.getPrecioBase()+(property.getPrecioBase()*temporadaRepo.findByTemporada("Alta").getPorcentajeAumento());
+        float lowSeasonPrice = property.getPrecioBase()+(property.getPrecioBase()*temporadaRepo.findByTemporada("Baja").getPorcentajeAumento());
 
         int days = (int) ((departureDate.getTime() - arrivalDate.getTime()) / (1000 * 60 * 60 * 24));
         System.out.println("Dias de reserva: " + days);
@@ -42,11 +42,12 @@ public class ReservaService {
         }
 
         System.out.println("Dias en temporada alta: " + highSeasonDays);
+        System.out.println("Precio dia en temporada alta: " + highSeasonPrice);
         System.out.println("Dias en temporada baja: " + lowSeasonDays);
+        System.out.println("Precio dia en temporada baja: " + lowSeasonPrice);
+        System.out.println("Precio base: " + property.getPrecioBase());
 
-        finalPrice += highSeasonDays * highSeasonPrice * property.getPrecioBase();
-        System.out.println("Precio en temporada alta: " + finalPrice);
-        finalPrice += lowSeasonDays * lowSeasonPrice * property.getPrecioBase();
+        finalPrice += (highSeasonDays * highSeasonPrice)+ (lowSeasonDays * lowSeasonPrice);
 
         return finalPrice;
     }

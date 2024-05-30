@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pasarela de pagos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasarela de Pagos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            margin-top: 30px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        select {
+            appearance: none;
+            background-color: #fff;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position-x: 100%;
+            background-position-y: 5px;
+            padding-right: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Pasarela de Pagos</h2>
+    <form id="payment-form" action="/realizar-pago" method="post">
+        <label for="titular">Titular de la Tarjeta</label>
+        <input type="text" id="titular" name="titular" placeholder="Nombre del titular" required>
+        <label for="numero-tarjeta">Número de Tarjeta</label>
+        <input type="text" id="numero-tarjeta" name="numero-tarjeta" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+        <label for="fecha-expiracion">Fecha de Expiración</label>
+        <input type="text" id="fecha-expiracion" name="fecha-expiracion" placeholder="MM/YY" required>
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" name="cvv" placeholder="XXX" required>
+        <label for="monto-pagar">Monto a Pagar</label>
+        <input type="text" id="monto-pagar" name="montoPagar"  th:value="${precio}" disabled>
+        <label for="tipo-pago">Tipo de Pago</label>
+        <select id="tipo-pago" name="tipo_pago" required>
+            <option value="total">Pago Total</option>
+            <option value="parcial">Pago Parcial</option>
+        </select>
+        <input type="text" id="monto" name="monto" placeholder="Ingrese el monto a pagar" required style="display: none;">
+        <input type="hidden" name="precio" th:value="${precio}">
+        <input type="hidden" name="propertyId" th:value="${id_property}">
+        <input type="hidden" name="llegada" th:value="${#dates.format(llegada, 'yyyy-MM-dd')}">
+        <input type="hidden" name="salida" th:value="${#dates.format(salida, 'yyyy-MM-dd')}">
+        <input type="hidden" name="personas" th:value="${personas}">
+        <input type="hidden" name="temporada" th:value="${temporada}">
+        <input type="submit" id="btn-pagar" value="Pagar" style="display: block">
+    </form>
+</div>
+<script>
+    document.getElementById('numero-tarjeta').addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, ''); // Solo números
+        let formattedValue = '';
+        for (let i = 0; i < value.length; i++) {
+            if (i % 4 === 0 && i > 0) {
+                formattedValue += '-';
+            }
+            formattedValue += value[i];
+        }
+        e.target.value = formattedValue.slice(0, 19); // Limitar a 19 caracteres
+    });
+    document.getElementById('fecha-expiracion').addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, ''); // Solo números
+        let formattedValue = '';
+        for (let i = 0; i < value.length; i++) {
+            if (i === 2 && i>0) {
+                formattedValue += '/';
+            }
+            formattedValue += value[i];
+        }
+        e.target.value = formattedValue.slice(0, 5); // Limitar a 5 caracteres (MM/YY)
+    });
+    document.getElementById('cvv').addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, ''); // Solo números
+        e.target.value = value.slice(0, 3); // Limitar a 3 caracteres
+    });
+    const tipoPagoSelect = document.getElementById('tipo-pago');
+    const montoInput = document.getElementById('monto');
+    const btnPagar = document.getElementById('btn-pagar');
+    const montoPagar = document.getElementById('monto-pagar');
+
+
+    tipoPagoSelect.addEventListener('change', function() {
+        if (this.value === 'parcial') {
+            montoInput.style.display = 'block';
+            montoInput.value = "0";
+            montoInput.required = true;
+        } else {
+            montoInput.style.display = 'none';
+            montoInput.value = montoPagar.value;
+            btnPagar.style.display = 'block';
+            montoInput.required = false;
+        }
+    });
+
+    montoInput.addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, '');
+        e.target.value = value.slice(0, 20);
+        if(value === "0" || value > montoPagar.value) {
+            btnPagar.style.display = 'none';
+        } else {
+            btnPagar.style.display = 'block';
+        }
+    });
+</script>
+</body>
+</html>
