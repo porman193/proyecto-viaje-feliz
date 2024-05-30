@@ -1,0 +1,64 @@
+#main-header {
+    background-color: #333; /* Verde corporativo */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+#main-header h1 {
+    /* Otros estilos */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra de texto */
+    color: #fff; /* Color del texto */
+    animation: pulse 2s infinite;
+    padding: 10px 20px; /* Espacio interior */
+    border-radius: 10px; /* Bordes redondeados */
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+.logo-container {
+    margin-bottom: 10px; /* Espacio entre el logotipo y las opciones */
+}
+
+.logo-container img {
+    width: 120px; /* Ancho del logotipo */
+    height: auto; /* Altura ajustada automáticamente */
+}
+
+.admin-header {
+    text-align: center;
+}
+
+.admin-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold; /* Negrita */
+}
+
+.admin-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Para que los botones se envuelvan si no caben en una línea */
+}
+
+.admin-buttons .button {
+    background-color: #9F6E2F; /* Naranja corporativo */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px; /* Bordes redondeados */
+    cursor: pointer;
+    font-size: 1.2em;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: background-color 0.3s; /* Transición suave al pasar el ratón */
+}
+
+.admin-buttons .button:hover {
+    background-color: #333; /* Naranja más claro al pasar el ratón */
+}
