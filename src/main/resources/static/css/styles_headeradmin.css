@@ -1,32 +1,45 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para el encabezado */
 #main-header {
     background-color: #333; /* Verde corporativo */
     color: white;
-    padding: 20px 0;
+    padding: 20px;
     text-align: center;
-    
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
+    position: relative;
 }
+
 #main-header h1 {
-    /* Otros estilos */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra de texto */
     color: #fff; /* Color del texto */
     animation: pulse 2s infinite;
     padding: 10px 20px; /* Espacio interior */
     border-radius: 10px; /* Bordes redondeados */
 }
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
+
 .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-bottom: 10px; /* Espacio entre el logotipo y las opciones */
 }
 
 .logo-container img {
     width: 120px; /* Ancho del logotipo */
     height: auto; /* Altura ajustada automáticamente */
+}
+
+.user-name {
+    color: white;
+    margin-top: 5px;
 }
 
 .admin-header {
@@ -44,6 +57,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap; /* Para que los botones se envuelvan si no caben en una línea */
+    margin-top: 20px; /* Espacio entre el título y los botones */
 }
 
 .admin-buttons .button {
@@ -60,16 +74,54 @@
 }
 
 .admin-buttons .button:hover {
-    background-color: #333; /* Naranja más claro al pasar el ratón */
-}
-.logo-backup {
-    position: absolute;
-    top: 20px; /* Distancia desde la parte superior */
-    right: 20px; /* Distancia desde el borde derecho */
+    background-color: grey; /* Naranja más claro al pasar el ratón */
 }
 
-.logo-backup img {
+.logout-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* Estilos para botones de acción de backup */
+.backup-button img {
     width: 40px; /* Ancho del icono de backup */
     height: auto; /* Altura automática para mantener la proporción */
-    border-radius: 20p;
+}
+.logo-container a {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-decoration: none; /* Para quitar subrayado del enlace */
+}
+
+/* Estilos para el botón de cerrar sesión */
+.logout-button {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: white;
+    color: #333;
+}
+.backup-button {
+    background-color: #9F6E2F; /* Naranja corporativo */
+    border: none;
+    border-radius: 25px; /* Bordes redondeados */
+    padding: 10px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s; /* Transición suave al pasar el ratón */
+}
+
+.backup-button:hover {
+    background-color: #333; /* Naranja más claro al pasar el ratón */
 }

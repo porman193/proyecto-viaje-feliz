@@ -1,19 +1,19 @@
 <header id="main-header">
     <div class="logo-container">
         <img th:src="@{/images/Icono.jpg.png}" alt="Logo">
+        <a href="#"><span th:text="${session.userAuth.nombres+' '+session.userAuth.apellidos}"></span></a>
     </div>
-   
+
     <div class="admin-header">
         <h1>Panel de Administración</h1>
         <div class="admin-buttons">
+            <a class="logout-button" href="/logout">Cerrar Sesión</a>
             <a href="/reservas" class="button">Gestión de Reservas</a>
             <a href="/propiedades" class="button">Gestión de Propiedades</a>
-            <a href="/comentarios" class="button">Gestión de Comentarios</a>
             <a href="/usuarios" class="button">Gestión de Usuarios</a>
+            <a href="/backup" class="button backup-button">
+                <img th:src="@{/images/conf.png}" alt="Backup">
+            </a>
         </div>
     </div>
-    <div class="logo-backup">
-        <button class="backup-button">
-            <img th:src="@{/images/conf.png}" alt="backup">
-        </button>
 </header>

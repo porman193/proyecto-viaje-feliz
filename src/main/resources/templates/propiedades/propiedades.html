@@ -33,19 +33,19 @@
         <tbody>
             <!-- Itera sobre la lista de propiedades -->
             <tr th:each="property : ${properties}">
-                <td th:text="${property.idPropiedad}"></td>
-                <td th:text="${property.numHabitaciones}"></td>
-                <td th:text="${property.precioBase}"></td>
-                <td th:text="${property.aceptaMascotas} ? 'Sí' : 'No'"></td>
-                <td th:text="${property.numBanos}"></td>
-                <td th:text="${property.calefaccion} ? 'Sí' : 'No'"></td>
-                <td th:text="${property.aireAcondicionado} ? 'Sí' : 'No'"></td>
-                <td th:text="${property.ubicacionDireccion}"></td>
-                <td th:text="${property.capacidad}"></td>
-                <td th:text="${property.tipoPropiedad.nombre}"></td>
-                <td th:text="${property.paisUbicacion.nombre}"></td>
-                <td th:text="${property.ciudadUbicacion.nombre}"></td>
-                <td th:text="${property.regionUbicacion.nombre}"></td>
+                <td th:text="${property.idPropiedad}">1</td>
+                <td th:text="${property.numHabitaciones}">2</td>
+                <td th:text="${property.precioBase}">20000</td>
+                <td th:text="${property.aceptaMascotas} ? 'Sí' : 'No'">Si</td>
+                <td th:text="${property.numBanos}">2</td>
+                <td th:text="${property.calefaccion} ? 'Sí' : 'No'">Si</td>
+                <td th:text="${property.aireAcondicionado} ? 'Sí' : 'No'">No</td>
+                <td th:text="${property.ubicacionDireccion}">calleejemplo1</td>
+                <td th:text="${property.capacidad}">4</td>
+                <td th:text="${property.tipoPropiedad.nombre}">casa</td>
+                <td th:text="${property.paisUbicacion.nombre}">Lasnieves</td>
+                <td th:text="${property.ciudadUbicacion.nombre}">colombia</td>
+                <td th:text="${property.regionUbicacion.nombre}">cundinamarca</td>
                 <!-- Asegúrate de incluir todos los atributos de la clase Property -->
             </tr>
         </tbody>

@@ -26,7 +26,7 @@
         <tbody>
             <!-- Itera sobre la lista de usuarios -->
             <tr th:each="user : ${users}">
-                <td th:text="${user.identificacion}">1</td>
+                <td th:text="${user.identificacion}"></td>
                 <td th:text="${user.nombres}">Juan Pérez</td>
                 <td th:text="${user.apellidos}">Pérez</td>
                 <td th:text="${user.email}">juan.perez@example.com</td>
