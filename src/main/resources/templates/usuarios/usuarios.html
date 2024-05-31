@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Usuarios</title>
-    <link rel="stylesheet" type="text/css" href="css/styles_headeradmin.css">
-    <link rel="stylesheet" type="text/css" href="css/styles_footeradmin.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" type="text/css" href="/css/styles_Users.css">
+    
+    <link rel="stylesheet" type="text/css" href="css/styles_User.css">
 </head>
 <body>
 <div class="admin-header">
@@ -18,25 +14,29 @@
     <h2>Listado de Usuarios</h2>
     <table>
         <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Acciones</th>
-        </tr>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Contraseña</th>
+                <th>Acciones</th>
+            </tr>
         </thead>
         <tbody>
             <!-- Itera sobre la lista de usuarios -->
             <tr th:each="user : ${users}">
                 <td th:text="${user.identificacion}">1</td>
                 <td th:text="${user.nombres}">Juan Pérez</td>
+                <td th:text="${user.apellidos}">Pérez</td>
                 <td th:text="${user.email}">juan.perez@example.com</td>
-        
+                <td th:text="${user.contrasena}">********</td>
+           
                 <td>
-                   <form action="/usuarios/usuarios/edit/${user.identificacion}" method="get" class="action-form">
+                    <form th:action="@{/edit/{id}(id=${user.identificacion})}" method="get" class="action-form">
                         <button type="submit" class="button edit-button">Editar</button>
                     </form>
-                    <form action="/usuarios/usuarios/delete/${user.identificacion}" method="post" class="action-form">
+                    <form th:action="@{/delete/{id}(id=${user.identificacion})}" method="post" class="action-form">
                         <button type="submit" class="button delete-button">Eliminar</button>
                     </form>
                 </td>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Reservas</title>
+    <link rel="stylesheet" type="text/css" href="css/styles_reserva.css">
+</head>
+<body>
+<div class="admin-header">
+    <h1>Panel de Administración - Reservas</h1>
+</div>
+<div class="admin-container">
+    <h2>Listado de Reservas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Comentarios</th>
+                <th>Calificación</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Precio Total</th>
+                <th>Mascotas</th>
+                <th>Número de Personas</th>
+                <!-- Asegúrate de incluir todos los atributos de la clase Reserva -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Itera sobre la lista de reservas -->
+            <tr th:each="reserva : ${reservas}">
+                <td th:text="${reserva.idReserva}"></td>
+                <td th:text="${reserva.comentariosEncuesta}"></td>
+                <td th:text="${reserva.califEncuesta}"></td>
+                <td th:text="${#dates.format(reserva.fechaIni, 'dd/MM/yyyy')}"></td>
+                <td th:text="${#dates.format(reserva.fechaFin, 'dd/MM/yyyy')}"></td>
+                <td th:text="${reserva.precioTotal}"></td>
+                <td th:text="${reserva.mascotas} ? 'Sí' : 'No'"></td>
+                <td th:text="${reserva.numPersonas}"></td>
+                <!-- Asegúrate de incluir todos los atributos de la clase Reserva -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -32,7 +32,7 @@ public class UsersController {
     public String editUserForm(@PathVariable Long id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
-        return "usuarios/editar_usuario"; // Nombre de la vista HTML para editar usuario
+        return "usuarios/editar_usuarios"; // Nombre de la vista HTML para editar usuario
     }
 
     // Actualizar usuario
