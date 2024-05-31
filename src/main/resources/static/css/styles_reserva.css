@@ -65,6 +65,10 @@ th, td {
     background-color: #f44336;
 }
 
+.comments-button {
+    background-color: #FFA500; /* Botón de comentarios en color naranja */
+}
+
 /* Estilos para botones en hover */
 .button:hover {
     opacity: 0.8;

@@ -22,21 +22,31 @@
                 <th>Precio Total</th>
                 <th>Mascotas</th>
                 <th>Número de Personas</th>
-                <!-- Asegúrate de incluir todos los atributos de la clase Reserva -->
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             <!-- Itera sobre la lista de reservas -->
             <tr th:each="reserva : ${reservas}">
-                <td th:text="${reserva.idReserva}"></td>
-                <td th:text="${reserva.comentariosEncuesta}"></td>
-                <td th:text="${reserva.califEncuesta}"></td>
-                <td th:text="${#dates.format(reserva.fechaIni, 'dd/MM/yyyy')}"></td>
-                <td th:text="${#dates.format(reserva.fechaFin, 'dd/MM/yyyy')}"></td>
-                <td th:text="${reserva.precioTotal}"></td>
-                <td th:text="${reserva.mascotas} ? 'Sí' : 'No'"></td>
-                <td th:text="${reserva.numPersonas}"></td>
-                <!-- Asegúrate de incluir todos los atributos de la clase Reserva -->
+                <td th:text="${reserva.idReserva}">1</td>
+                <td th:text="${reserva.comentariosEncuesta}">Buen servicio</td>
+                <td th:text="${reserva.califEncuesta}">5</td>
+                <td th:text="${#dates.format(reserva.fechaIni, 'dd/MM/yyyy')}">01/01/2024</td>
+                <td th:text="${#dates.format(reserva.fechaFin, 'dd/MM/yyyy')}">07/01/2024</td>
+                <td th:text="${reserva.precioTotal}">500</td>
+                <td th:text="${reserva.mascotas} ? 'Sí' : 'No'">Sí</td>
+                <td th:text="${reserva.numPersonas}">4</td>
+                <td>
+                    <form th:action="@{/edit/{id}(id=${reserva.idReserva})}" method="get" class="action-form">
+                        <button type="submit" class="button edit-button">Editar</button>
+                    </form>
+                    <form th:action="@{/delete/{id}(id=${reserva.idReserva})}" method="post" class="action-form">
+                        <button type="submit" class="button delete-button">Eliminar</button>
+                    </form>
+                    <form th:action="@{/comments/{id}(id=${reserva.idReserva})}" method="get" class="action-form">
+                        <button type="submit" class="button comments-button">Comentarios</button>
+                    </form>
+                </td>
             </tr>
         </tbody>
     </table>

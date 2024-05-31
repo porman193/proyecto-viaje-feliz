@@ -48,9 +48,6 @@ public class Reserva {
     @JoinColumn(name = "id_temporada", nullable = false)
     private Temporada temporada;
 
-    @ManyToOne
-    @JoinColumn(name = "id_pago", nullable = false)
-    private Pagos pagos;
 
   @ManyToOne
     @JoinColumn(name = "id_propiedad", nullable = false)
@@ -136,12 +133,6 @@ public class Reserva {
         this.temporada = temporada;
     }
 
-    public Pagos getPagos() {
-        return pagos;
-    }
 
-    public void setPagos(Pagos pagos) {
-        this.pagos = pagos;
-    }
 }
 
