@@ -7,13 +7,22 @@
     <div class="admin-header">
         <h1>Panel de Administración</h1>
         <div class="admin-buttons">
-            <a class="logout-button" href="/logout">Cerrar Sesión</a>
             <a href="/reservas" class="button">Gestión de Reservas</a>
             <a href="/propiedades" class="button">Gestión de Propiedades</a>
             <a href="/usuarios" class="button">Gestión de Usuarios</a>
             <a href="/backup" class="button backup-button">
                 <img th:src="@{/images/conf.png}" alt="Backup">
             </a>
+        </div>
+    </div>
+
+    <div class="dropdown-container">
+        <div class="dropdown">
+            <a class="logout-button dropbtn">...</a>
+            <div class="dropdown-content">
+                <a href="/logout">Cerrar Sesión</a>
+                <a href="/personal">Ver Perfil</a>
+            </div>
         </div>
     </div>
 </header>
