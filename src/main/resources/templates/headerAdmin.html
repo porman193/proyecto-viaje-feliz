@@ -1,32 +1,28 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Header - Administrador</title>
-    <link rel="stylesheet" type="text/css" href="css/styles_header.css">
-</head>
-<body>
-    <header id="main-header">
-        <div class="logo-container">
-            <img th:src="@{/images/logo_viaje_feliz.png}" alt="Logo">
-        </div>
+<header id="main-header">
+    <div class="logo-container">
+        <img th:src="@{/images/Icono.jpg.png}" alt="Logo">
+        <a href="#"><span th:text="${session.userAuth.nombres+' '+session.userAuth.apellidos}"></span></a>
+    </div>
 
-        <div class="admin-header">
-            <h1>Panel de Administración</h1>
-            <div class="admin-buttons">
-                <a href="/admin/reservations" class="button">Gestión de Reservas</a>
-                <a href="/admin/properties" class="button">Gestión de Propiedades</a>
-                <a href="/admin/comments" class="button">Gestión de Comentarios</a>
-                <div class="dropdown">
-                    <button class="dropdown-button">Gestión de Usuarios y Propiedades</button>
-                    <div class="dropdown-content">  
-                        <a href="/admin/users">Gestión de Usuarios</a>
-                        <a href="/admin/properties">Gestión de Propiedades</a>
-                        <a href="/admin/comments">Gestión de Comentarios</a>
-                    </div>
-                </div>
+    <div class="admin-header">
+        <h1>Panel de Administración</h1>
+        <div class="admin-buttons">
+            <a href="/reservas" class="button">Gestión de Reservas</a>
+            <a href="/propiedades" class="button">Gestión de Propiedades</a>
+            <a href="/usuarios" class="button">Gestión de Usuarios</a>
+            <a href="/backup" class="button backup-button">
+                <img th:src="@{/images/conf.png}" alt="Backup">
+            </a>
+        </div>
+    </div>
+
+    <div class="dropdown-container">
+        <div class="dropdown">
+            <a class="logout-button dropbtn">...</a>
+            <div class="dropdown-content">
+                <a href="/logout">Cerrar Sesión</a>
+                <a href="/personal">Ver Perfil</a>
             </div>
         </div>
-    </header>
-</body>
-</html>
+    </div>
+</header>

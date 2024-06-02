@@ -1,5 +1,11 @@
 package com.viajefeliza.alquiler.services;
 
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.viajefeliza.alquiler.model.Property;
 import com.viajefeliza.alquiler.model.Reserva;
 import com.viajefeliza.alquiler.model.User;
@@ -7,11 +13,11 @@ import com.viajefeliza.alquiler.repositories.ReservaRepo;
 import com.viajefeliza.alquiler.repositories.TemporadaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+
 
 @Service
 public class ReservaService {
@@ -24,10 +30,13 @@ public class ReservaService {
     @Autowired
     private TemporadaRepo temporadaRepo;
 
-
+    public List<Reserva> getAllReservas() {
+        return reservaRepo.findAll();
+    }
     public void saveReserva(Reserva reserva) {
         reservaRepo.save(reserva);
     }
+    
     public float calculatePrice(Property property, Date arrivalDate, Date departureDate) {
         float finalPrice = 0;
         float highSeasonPrice = property.getPrecioBase()+(property.getPrecioBase()*temporadaRepo.findByTemporada("Alta").getPorcentajeAumento());

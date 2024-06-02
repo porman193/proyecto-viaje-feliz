@@ -17,6 +17,7 @@ import com.viajefeliza.alquiler.services.AuthService;
 
 import jakarta.servlet.http.HttpSession;
 
+
 import java.util.Date;
 import java.util.List;
 
@@ -31,9 +32,15 @@ public class AppController {
     private TelefonoService telefonoService;
 
     @GetMapping("/home")
-    public String home() {
-        return "index";
+    public String home(HttpSession session) {
+        // Verificar si el usuario es administrador
+        if (isAdmin(session)) {
+            return "admin/indexAdmin"; // Redirigir al inicio de administrador
+        } else {
+            return "index"; // Redirigir al inicio normal
+        }
     }
+
     @GetMapping("/login")
     public String showLoginForm() {
         return "login/login";
@@ -44,6 +51,7 @@ public class AppController {
         session.invalidate();
         return "index";
     }
+
     @PostMapping("/login")
     public String processLogin(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
         if (authService.login(username, password)) {
@@ -58,7 +66,9 @@ public class AppController {
         }
         model.addAttribute("error", "Credenciales incorrectas");
         return "login/login"; // Muestra la página de inicio de sesión con un mensaje de error
+
     }
+
     @GetMapping("/mostrar-datos-sesion")
     public String mostrarDatosSesion(HttpSession session, Model model) {
         // Obtener datos de la sesión
@@ -89,5 +99,13 @@ public class AppController {
         model.addAttribute("standardDate", new Date());
         model.addAttribute("telefonos", telefonosUsuario);
         return "user/userProfile";
+        }
+    // Método para verificar si el usuario es administrador
+    private boolean isAdmin(HttpSession session) {
+        // Aquí puedes implementar la lógica para verificar si el usuario es administrador
+        // Por ejemplo, podrías comprobar si el rol del usuario es "admin"
+        // Por ahora, supongamos que si el atributo "isAdmin" de la sesión es true, el usuario es administrador
+        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+        return isAdmin != null && isAdmin;
     }
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Propiedades</title>
+    <link rel="stylesheet" type="text/css" href="css/styles_propiedad.css">
+</head>
+<body>
+<div class="admin-header">
+    <h1>Panel de Administración - Propiedades</h1>
+</div>
+<div class="admin-container">
+    <h2>Listado de Propiedades</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Habitaciones</th>
+                <th>Precio Base</th>
+                <th>Acepta Mascotas</th>
+                <th>Baños</th>
+                <th>Calefacción</th>
+                <th>Aire Acondicionado</th>
+                <th>Dirección</th>
+                <th>Capacidad</th>
+                <th>Tipo de Propiedad</th>
+                <th>País de Ubicación</th>
+                <th>Ciudad de Ubicación</th>
+                <th>Región de Ubicación</th>
+                <!-- Asegúrate de incluir todos los atributos de la clase Property -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Itera sobre la lista de propiedades -->
+            <tr th:each="property : ${properties}">
+                <td th:text="${property.idPropiedad}">1</td>
+                <td th:text="${property.numHabitaciones}">2</td>
+                <td th:text="${property.precioBase}">20000</td>
+                <td th:text="${property.aceptaMascotas} ? 'Sí' : 'No'">Si</td>
+                <td th:text="${property.numBanos}">2</td>
+                <td th:text="${property.calefaccion} ? 'Sí' : 'No'">Si</td>
+                <td th:text="${property.aireAcondicionado} ? 'Sí' : 'No'">No</td>
+                <td th:text="${property.ubicacionDireccion}">calleejemplo1</td>
+                <td th:text="${property.capacidad}">4</td>
+                <td th:text="${property.tipoPropiedad.tipo}">casa</td>
+                <td th:text="${property.paisUbicacion.pais}">Lasnieves</td>
+                <td th:text="${property.ciudadUbicacion.ciudad}">colombia</td>
+                <td th:text="${property.regionUbicacion.region}">cundinamarca</td>
+                <!-- Asegúrate de incluir todos los atributos de la clase Property -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
