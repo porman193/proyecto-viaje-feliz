@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class ReservaController {
@@ -39,6 +40,7 @@ public class ReservaController {
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date llegada,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date salida,
             @RequestParam Integer personas,
+            @RequestParam (required = false)String mascotas,
             HttpSession session, Model model
             )
     {
@@ -78,6 +80,7 @@ public class ReservaController {
         model.addAttribute("llegada", llegada);
         model.addAttribute("salida", salida);
         model.addAttribute("personas", personas);
+        model.addAttribute("mascotas", mascotas);
         return "pagos/pasarela";
     }
 
@@ -104,12 +107,12 @@ public class ReservaController {
             @RequestParam Integer personas,
             @RequestParam Float precio,
             @RequestParam String tipo_pago,
-            @RequestParam (required = false)Float monto,
+            @RequestParam Float monto,
+            @RequestParam (required = false)String mascotas,
             @RequestParam String temporada,
             HttpSession session
     )
     {
-        if(tipo_pago.equals("total")) {
             Reserva reserva = new Reserva();
             reserva.setFechaIni(llegada);
             reserva.setFechaFin(salida);
@@ -117,19 +120,55 @@ public class ReservaController {
             reserva.setPrecioTotal(precio);
             Property property = propertyService.getPropertyById(propertyId);
             reserva.setProperty(property);
-            reserva.setMascotas(property.getAceptaMascotas());
+            if(mascotas == null) {
+                mascotas = "false";
+            }
+            reserva.setMascotas(mascotas.equals("true"));
             reserva.setUsuario((User) session.getAttribute("userAuth"));
             reserva.setTemporada(temporadaService.findByTemporada(temporada));
             reservaService.saveReserva(reserva);
             Pagos pago = new Pagos();
-            pago.setMonto(precio);
+            pago.setMonto(monto);
             pago.setFechaPago(new Date());
-            pago.setMetodoPago("total");
+            pago.setMetodoPago(tipo_pago);
             pago.setReserva(reserva);
             pagosServices.savePagos(pago);
             return "redirect:/";
+    }
+
+    @GetMapping("/reservas-abono/{id}")
+    public String reservasAbono(HttpSession session, Model model , @PathVariable Integer id) {
+        Reserva reserva = reservaService.getReservaById(id);
+        List<Pagos> pagos = pagosServices.getPagosByReserva(reserva);
+        Float totalPagado = 0f;
+        if(reserva == null) {
+            return "error";
         }
-        return "redirect:/detinations/destinations";
+        for( Pagos pago : pagos){
+            totalPagado += pago.getMonto();
+        }
+        Float saldo = reserva.getPrecioTotal() - totalPagado;
+        model.addAttribute("reserva", reserva);
+        model.addAttribute("deuda", saldo);
+        model.addAttribute("abono", true);
+        return "pagos/pasarela";
+    }
+
+    @PostMapping("/realizar-abono")
+    public String realizarAbono(
+            @RequestParam Integer id_reserva,
+            @RequestParam Float monto,
+            @RequestParam String tipo_pago
+    )
+    {
+        Reserva reserva = reservaService.getReservaById(id_reserva);
+        Pagos pago = new Pagos();
+        pago.setMonto(monto);
+        pago.setFechaPago(new Date());
+        pago.setMetodoPago(tipo_pago);
+        pago.setReserva(reserva);
+        pagosServices.savePagos(pago);
+        return "redirect:/";
     }
 
 

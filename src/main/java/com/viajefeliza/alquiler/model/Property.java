@@ -53,9 +53,6 @@ public class Property implements Serializable {
     @JoinColumn(name = "id_region_ubi", nullable = false)
     private RegionUbicacion regionUbicacion;
 
-    @ManyToOne
-    @JoinColumn(name = "id_fotografia", nullable = false)
-    private Fotografia fotografia;
 
     public Integer getIdPropiedad() {
         return idPropiedad;
@@ -159,14 +156,6 @@ public class Property implements Serializable {
 
     public void setRegionUbicacion(RegionUbicacion regionUbicacion) {
         this.regionUbicacion = regionUbicacion;
-    }
-
-    public Fotografia getFotografia() {
-        return fotografia;
-    }
-
-    public void setFotografia(Fotografia fotografia) {
-        this.fotografia = fotografia;
     }
 
     public Property() {

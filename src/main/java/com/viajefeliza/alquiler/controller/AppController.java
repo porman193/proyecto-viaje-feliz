@@ -1,6 +1,11 @@
 package com.viajefeliza.alquiler.controller;
 
+import com.viajefeliza.alquiler.model.Reserva;
 import com.viajefeliza.alquiler.model.RolUsuario;
+import com.viajefeliza.alquiler.model.TelefonosUsuario;
+import com.viajefeliza.alquiler.model.User;
+import com.viajefeliza.alquiler.services.ReservaService;
+import com.viajefeliza.alquiler.services.TelefonoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,12 +17,18 @@ import com.viajefeliza.alquiler.services.AuthService;
 
 import jakarta.servlet.http.HttpSession;
 
+import java.util.Date;
+import java.util.List;
 
 
 @Controller
 public class AppController {
     @Autowired
     private AuthService authService;
+    @Autowired
+    private ReservaService reservaService;
+    @Autowired
+    private TelefonoService telefonoService;
 
     @GetMapping("/home")
     public String home() {
@@ -64,5 +75,19 @@ public class AppController {
 
         // Devolver la vista donde se mostrarán los datos de la sesión
         return "index";
+    }
+
+    @GetMapping("/user-profile")
+    public String userProfile(HttpSession session, Model model) {
+        // Obtener datos de la sesión
+        User user = (User) session.getAttribute("userAuth");
+
+        List<Reserva> reservas = reservaService.getReservasByUser(user);
+        List<TelefonosUsuario> telefonosUsuario = telefonoService.getTelefonosByUsuario(user);
+        System.out.println("Reservas del usuario: " + reservas);
+        model.addAttribute("reservas", reservas);
+        model.addAttribute("standardDate", new Date());
+        model.addAttribute("telefonos", telefonosUsuario);
+        return "user/userProfile";
     }
 }

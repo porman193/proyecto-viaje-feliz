@@ -22,6 +22,9 @@ public class PropertyService {
         return propertyRepo.findAll();
     }
 
+    public List<Property> getPropertiesByReservationDate(Date arrivalDate, Date departureDate) {
+        return propertyRepo.findPropertiesByReservationDate(arrivalDate, departureDate);
+    }
     public List<Property> searchProperties(String lugar, Date llegada, Date salida, Integer personas) {
         // Crear instancias de listas para almacenar los resultados
         List<Property> propertiesByCapacity = new ArrayList<>();
@@ -31,27 +34,51 @@ public class PropertyService {
         // Realizar las consultas y almacenar los resultados en las listas correspondientes
         if (personas != null) {
             propertiesByCapacity = propertyRepo.findPropertiesByCapacity(personas);
+            System.out.println("Capacidad propiedades:"+propertiesByCapacity);
         }
         if (llegada != null && salida != null) {
-            propertiesByDate = propertyRepo.findPropertiesByDate(llegada, salida);
+            propertiesByDate = propertyRepo.findPropertiesByReservationDate(llegada, salida);
+            System.out.println("Fecha propiedades:"+propertiesByDate);
         }
         if (lugar != null && !lugar.isEmpty()) {
             propertiesByPlace = propertyRepo.findPropertiesByPlace(lugar);
+            System.out.println("Lugar propiedades:"+propertiesByPlace);
         }
 
         // Combinar las listas y eliminar duplicados utilizando un Set
-        Set<Property> combinedProperties = new HashSet<>();
-        combinedProperties.addAll(propertiesByCapacity);
-        combinedProperties.addAll(propertiesByDate);
-        combinedProperties.addAll(propertiesByPlace);
+        Set<Property> SetCapacity = new HashSet<>(propertiesByCapacity);
+        Set<Property> SetDate = new HashSet<>(propertiesByDate);
+        Set<Property> SetPlace = new HashSet<>(propertiesByPlace);
 
-        // Convertir el Set de vuelta a una List y devolverla
-        return new ArrayList<>(combinedProperties);
+
+        if (SetCapacity.isEmpty() && SetDate.isEmpty()){
+            return new ArrayList<>(SetPlace);
+        }else if (SetCapacity.isEmpty() && SetPlace.isEmpty()){
+            List<Property> properties = new ArrayList<>();
+            properties = propertyRepo.findAll();
+            if(SetDate.isEmpty()) return properties;
+            Set<Property> SetProperties = new HashSet<>(properties);
+            SetProperties.removeAll(SetDate);
+            return new ArrayList<>(SetProperties);
+        } else if (SetDate.isEmpty() && SetPlace.isEmpty()) {
+            return new ArrayList<>(SetCapacity);
+        }else if (SetDate.isEmpty()){
+            SetCapacity.retainAll(SetPlace);
+            return new ArrayList<>(SetCapacity);
+        } else if (SetCapacity.isEmpty()){
+            SetPlace.removeAll(SetDate);
+            return new ArrayList<>(SetPlace);
+        } else if (SetPlace.isEmpty()){
+            SetCapacity.removeAll(SetDate);
+            return new ArrayList<>(SetDate);
+        }
+
+        return new ArrayList<>();
     }
 
     public Boolean isPropertyReserved(Property property, Date arrivalDate, Date departureDate) {
-        List<Property> properties = propertyRepo.findPropertiesByDate(arrivalDate, departureDate);
-        return !properties.contains(property);
+        List<Property> properties = propertyRepo.findPropertiesByReservationDate(arrivalDate, departureDate);
+        return properties.contains(property);
     }
 
 }

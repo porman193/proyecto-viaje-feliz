@@ -64,7 +64,7 @@
 <body>
 <div class="container">
     <h2>Pasarela de Pagos</h2>
-    <form id="payment-form" action="/realizar-pago" method="post">
+    <form id="payment-form" th:action="${abono} ? '/realizar-abono' : '/realizar-pago'" method="post">
         <label for="titular">Titular de la Tarjeta</label>
         <input type="text" id="titular" name="titular" placeholder="Nombre del titular" required>
         <label for="numero-tarjeta">Número de Tarjeta</label>
@@ -74,23 +74,33 @@
         <label for="cvv">CVV</label>
         <input type="text" id="cvv" name="cvv" placeholder="XXX" required>
         <label for="monto-pagar">Monto a Pagar</label>
-        <input type="text" id="monto-pagar" name="montoPagar"  th:value="${precio}" disabled>
+        <div th:if="${abono}">
+            <input type="text" id="monto-deuda" name="montoDeuda"  th:value="${deuda}" disabled>
+            <input type="hidden" name="id_reserva" th:value="${reserva.idReserva}">
+        </div>
+        <div th:unless="${abono}">
+            <input type="text" id="monto-pagar" name="montoPagar"  th:value="${precio}" disabled>
+        </div>
         <label for="tipo-pago">Tipo de Pago</label>
         <select id="tipo-pago" name="tipo_pago" required>
             <option value="total">Pago Total</option>
             <option value="parcial">Pago Parcial</option>
         </select>
-        <input type="text" id="monto" name="monto" placeholder="Ingrese el monto a pagar" required style="display: none;">
-        <input type="hidden" name="precio" th:value="${precio}">
-        <input type="hidden" name="propertyId" th:value="${id_property}">
-        <input type="hidden" name="llegada" th:value="${#dates.format(llegada, 'yyyy-MM-dd')}">
-        <input type="hidden" name="salida" th:value="${#dates.format(salida, 'yyyy-MM-dd')}">
-        <input type="hidden" name="personas" th:value="${personas}">
-        <input type="hidden" name="temporada" th:value="${temporada}">
+        <input type="text" id="monto" name="monto" placeholder="Ingrese el monto a pagar"  style="visibility: hidden;">
+        <div th:unless="${abono}">
+            <input type="hidden" name="precio" th:value="${precio}">
+            <input type="hidden" name="propertyId" th:value="${id_property}">
+            <input type="hidden" name="llegada" th:value="${#dates.format(llegada, 'yyyy-MM-dd')}">
+            <input type="hidden" name="salida" th:value="${#dates.format(salida, 'yyyy-MM-dd')}">
+            <input type="hidden" name="personas" th:value="${personas}">
+            <input type="hidden" name="temporada" th:value="${temporada}">
+            <input type="hidden" name="mascotas" th:value="${mascotas}">
+        </div>
+        <input type="hidden" id="abono" name="abono" th:value="${abono}">
         <input type="submit" id="btn-pagar" value="Pagar" style="display: block">
     </form>
 </div>
-<script>
+<script th:inline="javascript">
     document.getElementById('numero-tarjeta').addEventListener('input', function (e) {
         let value = e.target.value.replace(/\D/g, ''); // Solo números
         let formattedValue = '';
@@ -119,32 +129,40 @@
     });
     const tipoPagoSelect = document.getElementById('tipo-pago');
     const montoInput = document.getElementById('monto');
+    const montoDeuda = document.getElementById('monto-deuda');
     const btnPagar = document.getElementById('btn-pagar');
     const montoPagar = document.getElementById('monto-pagar');
+    const abono = document.getElementById('abono').value;
 
+    let montoValue = 0;
+   if(abono === 'true') {
+        montoValue = parseFloat(montoDeuda.value);
+   }else {
+        montoValue = parseFloat(montoPagar.value);
+   }
+    montoInput.value = montoValue;
 
     tipoPagoSelect.addEventListener('change', function() {
         if (this.value === 'parcial') {
-            montoInput.style.display = 'block';
-            montoInput.value = "0";
+            montoInput.style.visibility = 'visible';
+            montoInput.setAttribute('required', 'required');
             montoInput.required = true;
         } else {
-            montoInput.style.display = 'none';
-            montoInput.value = montoPagar.value;
+            montoInput.style.visibility = 'hidden';
+            montoInput.removeAttribute('required');
             btnPagar.style.display = 'block';
-            montoInput.required = false;
         }
     });
 
     montoInput.addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, '');
-        e.target.value = value.slice(0, 20);
-        if(value === "0" || value > montoPagar.value) {
+        let value = parseFloat(e.target.value);
+        if (value === 0.0 || value > montoValue) {
             btnPagar.style.display = 'none';
         } else {
             btnPagar.style.display = 'block';
         }
     });
+
 </script>
 </body>
 </html>

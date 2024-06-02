@@ -40,7 +40,7 @@
     <div class="destinations-container">
         <div th:each="property : ${properties}" class="property-card">
             <div class="property-img">
-                <img th:src="@{'/images-properties/' + ${property.fotografia.idFotografia}}" alt="Imagen de la Propiedad">
+                <img th:src="@{'/images-properties/' + ${property.idPropiedad}}" alt="Imagen de la Propiedad">
             </div>
             <div class="property-info">
                 <h2 th:text="${property.tipoPropiedad.tipo}"></h2>

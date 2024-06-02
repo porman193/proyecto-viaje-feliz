@@ -16,7 +16,7 @@
 
     <div class="property-info">
         <div class="property-img">
-            <img th:src="@{'/images-properties/' + ${property.fotografia.idFotografia}}" alt="Imagen de la Propiedad">
+            <img th:src="@{'/images-properties/' + ${property.getIdPropiedad()}}" alt="Imagen de la Propiedad">
         </div>
         <div>
             <h2 th:text="${property.tipoPropiedad.tipo}"></h2>
@@ -25,6 +25,8 @@
             <p th:text="'Capacidad: ' + ${property.capacidad} + ' personas'"></p>
             <p th:text="'Dirección: ' + ${property.ubicacionDireccion}"></p>
             <p th:text="'Precio: $' + ${property.precioBase}"></p>
+            <p th:text="${property.calefaccion} ? 'Calefacción: Sí' : 'Calefacción: No'"></p>
+            <p th:text="${property.aireAcondicionado} ? 'Aire Acondicionado: Sí' : 'Aire Acondicionado: No'"></p>
         </div>
     </div>
     <div class="property-reservation">
@@ -43,6 +45,14 @@
                     <label for="personas">Personas</label>
                     <input id="personas" name="personas" type="text" placeholder="¿Cuántos?" required>
                 </div>
+                <div class="input-container" th:if="${property.getAceptaMascotas}">
+                    <label for="mascotas">¿Lleva Mascotas?</label>
+                    <select name="mascotas" id="mascotas">
+                        <option value="true">Si</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+
                 <div class="input-container">
                     <label for="precio-total">Precio Total</label>
                     <input id="precio-total" name="precio-total" type="text" placeholder="Precio Total" disabled>
@@ -63,7 +73,7 @@
     var errorMessageMap = {
         "fecha": "La fecha de llegada no puede ser posterior a la fecha de salida.",
         "capacidad": "La cantidad de personas excede la capacidad de la propiedad.",
-        "reservada": "La propiedad ya está reservada para las fechas seleccionadas.",
+        "reservado": "La propiedad ya está reservada para las fechas seleccionadas.",
         "auth": "Debes iniciar sesión para poder reservar una propiedad."
     };
 

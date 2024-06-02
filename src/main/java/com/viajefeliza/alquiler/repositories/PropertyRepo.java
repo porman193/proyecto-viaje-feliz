@@ -17,6 +17,11 @@ public interface PropertyRepo extends JpaRepository<Property, Integer> {
     @Query("SELECT p FROM Property p WHERE p.capacidad >= :personas ")
     List<Property> findPropertiesByCapacity(@Param("personas") Integer personas);
 
-    @Query("SELECT p FROM Property p WHERE NOT EXISTS ("+"SELECT r FROM Reserva r WHERE r.property.idPropiedad = p.idPropiedad AND r.fechaIni BETWEEN :llegada AND :salida OR r.fechaFin BETWEEN :llegada AND :salida)")
-    List<Property> findPropertiesByDate(@Param("llegada") Date llegada, @Param("salida") Date salida);
+    @Query("SELECT p FROM Property p WHERE EXISTS (" +
+            "SELECT r FROM Reserva r WHERE r.property.idPropiedad = p.idPropiedad " +
+            "AND (" +
+            "    (r.fechaIni <= :salida AND r.fechaFin >= :llegada) " +
+            "))")
+    List<Property> findPropertiesByReservationDate(@Param("llegada") Date llegada, @Param("salida") Date salida);
 }
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil de usuario</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles_user_profile.css}">
+</head>
+<body>
+
+<div class="profile-container">
+    <div class="profile-header">
+        <img th:src="@{/images/user_ico.png}" alt="Imagen de perfil">
+        <div class="profile-details">
+            <h2 th:text="${session.userAuth.getNombres()}+' '+${session.userAuth.getApellidos()}"></h2>
+            <p th:text="${session.userAuth.email}"></p>
+            <div th:each="telefono : ${telefonos}">
+                <p th:text="'Teléfono: '+${telefono.getId().getTelefono()}"> </p>
+            </div>
+            <p th:text="'Dirección: '+${session.userAuth.direccion}"> </p>
+        </div>
+    </div>
+
+    <table class="reservations">
+        <thead>
+        <tr>
+            <th>ID Reserva</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>ID Propiedad</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="reserva : ${reservas}">
+            <td th:text="${reserva.idReserva}"></td>
+            <td th:text="${#dates.format(reserva.fechaIni,'yyyy-MM-dd')}"></td>
+            <td th:text="${#dates.format(reserva.fechaFin,'yyyy-MM-dd')}"></td>
+            <td th:text="${reserva.property.idPropiedad}"></td>
+            <td th:text="${reserva.estado}"></td>
+
+            <td th:if="${reserva.estado == 'pendiente'}">
+                <a th:href="@{'/reservas-abono/'+ ${reserva.idReserva}}" class="button-pagar">Pagar</a>
+            </td>
+
+            <td th:if="${reserva.estado == 'apartada'}">
+                <a th:href="@{'/reservas-abono/'+ ${reserva.idReserva}}" class="button-pagar">Pagar</a>
+            </td>
+
+            <td>
+              <a th:href="@{#}" class="button-calif" th:if="${reserva.estado == 'confirmada' and standardDate.after(reserva.fechaFin) }" >
+                    Calificar
+              </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

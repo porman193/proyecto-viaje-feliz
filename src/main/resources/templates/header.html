@@ -30,7 +30,7 @@
         <div th:if="${session.userAuth != null}" class="user-container">
             <div class="user-info-container">
                 <img class="user-img" th:src="@{/images/user_ico.png}" alt="Foto de perfil">
-                <a href="#"><span th:text="${session.userAuth.nombres+' '+session.userAuth.apellidos}"></span></a>
+                <a href="/user-profile"><span th:text="${session.userAuth.nombres+' '+session.userAuth.apellidos}"></span></a>
             </div>
             <a class="logout-button" href="/logout">Cerrar Sesión</a>
         </div>

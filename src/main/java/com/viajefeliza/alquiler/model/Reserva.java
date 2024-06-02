@@ -17,8 +17,19 @@ public class Reserva {
     @Column(name = "calif_encuesta")
     private Integer califEncuesta;
 
+    @Column(name = "estado")
+    private String estado;
+
     @Column(name = "fecha_ini", nullable = false)
     private Date fechaIni;
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     @Column(name = "fecha_fin", nullable = false)
     private Date fechaFin;

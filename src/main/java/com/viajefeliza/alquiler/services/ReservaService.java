@@ -2,6 +2,7 @@ package com.viajefeliza.alquiler.services;
 
 import com.viajefeliza.alquiler.model.Property;
 import com.viajefeliza.alquiler.model.Reserva;
+import com.viajefeliza.alquiler.model.User;
 import com.viajefeliza.alquiler.repositories.ReservaRepo;
 import com.viajefeliza.alquiler.repositories.TemporadaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 @Service
 public class ReservaService {
@@ -50,5 +52,13 @@ public class ReservaService {
         finalPrice += (highSeasonDays * highSeasonPrice)+ (lowSeasonDays * lowSeasonPrice);
 
         return finalPrice;
+    }
+
+    public List<Reserva> getReservasByUser(User user) {
+        return reservaRepo.findReservasByUsuario(user);
+    }
+
+    public Reserva getReservaById(Integer id) {
+        return reservaRepo.findById(id).orElse(null);
     }
 }
