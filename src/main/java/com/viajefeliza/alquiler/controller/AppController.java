@@ -30,6 +30,8 @@ public class AppController {
     private ReservaService reservaService;
     @Autowired
     private TelefonoService telefonoService;
+    @Autowired
+    private DatabaseController databaseController;
 
     @GetMapping("/")
     public String index() {
@@ -38,12 +40,17 @@ public class AppController {
 
     @GetMapping("/home")
     public String home(HttpSession session) {
+        RolUsuario rol= (RolUsuario) session.getAttribute("userRol");
         // Verificar si el usuario es administrador
-        if (isAdmin(session)) {
-            return "admin/indexAdmin"; // Redirigir al inicio de administrador
-        } else {
-            return "index"; // Redirigir al inicio normal
+        if (rol!= null){
+            if (rol.getRol().equals("Administrador")) {
+                return "admin/indexAdmin"; // Redirigir al inicio de administrador
+            } else {
+                return "index"; // Redirigir al inicio normal
+            }
         }
+        return "index";
+
     }
 
     @GetMapping("/login")

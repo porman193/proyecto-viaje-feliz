@@ -154,6 +154,30 @@ public class ReservaController {
         return "pagos/pasarela";
     }
 
+    @GetMapping("/reservas-calificar/{id}")
+    public String reservasCalificar(HttpSession session, Model model , @PathVariable Integer id) {
+        Reserva reserva = reservaService.getReservaById(id);
+        if(reserva == null) {
+            return "error";
+        }
+        model.addAttribute("reserva", reserva);
+        return "reservas/calificar";
+    }
+
+    @PostMapping("/calificar-reserva")
+    public String calificarReserva(
+            @RequestParam Integer id_reserva,
+            @RequestParam Integer rating,
+            @RequestParam String comments
+    )
+    {
+        Reserva reserva = reservaService.getReservaById(id_reserva);
+        reserva.setCalifEncuesta(rating);
+        reserva.setComentariosEncuesta(comments);
+        reservaService.saveReserva(reserva);
+        return "redirect:/";
+    }
+
     @PostMapping("/realizar-abono")
     public String realizarAbono(
             @RequestParam Integer id_reserva,

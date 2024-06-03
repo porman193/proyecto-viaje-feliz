@@ -4,9 +4,6 @@ import com.viajefeliza.alquiler.model.Property;
 import com.viajefeliza.alquiler.repositories.PropertyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.*;
 
 @Service

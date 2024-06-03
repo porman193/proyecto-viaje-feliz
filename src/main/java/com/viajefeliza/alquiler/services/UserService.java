@@ -28,8 +28,8 @@ public class UserService {
         return userOptional.orElse(null);
     }
 
-    public User updateUser(User user) {
-        return userRepository.save(user);
+    public void updateUser(User user) {
+        userRepository.save(user);
     }
 
     public void deleteUser(Long id) {

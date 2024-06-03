@@ -47,8 +47,8 @@
                 <a th:href="@{'/reservas-abono/'+ ${reserva.idReserva}}" class="button-pagar">Pagar</a>
             </td>
 
-            <td>
-              <a th:href="@{#}" class="button-calif" th:if="${reserva.estado == 'confirmada' and standardDate.after(reserva.fechaFin) }" >
+            <td th:if="${reserva.estado == 'confirmada'}">
+              <a th:href="@{'/reservas-calificar/'+ ${reserva.idReserva}}" class="button-calif" th:if="${reserva.estado == 'confirmada' and standardDate.after(reserva.fechaFin) and (reserva.comentariosEncuesta== null or reserva.califEncuesta == null) }" >
                     Calificar
               </a>
             </td>

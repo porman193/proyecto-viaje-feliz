@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Calificar Reserva</title>
+     <link rel="stylesheet" type="text/css" th:href="@{/css/styles_reserva_calificar.css}">
+</head>
+<body>
+<h1>Calificar Reserva</h1>
+<form th:action="'/calificar-reserva'" method="post">
+    <div>
+        <label>Calificación:</label>
+  </div>
+  <div class="rating">
+    <input type="radio" id="star5" name="rating" value="5" />
+    <label for="star5" title="Muy Bueno">&#9733;</label>
+    <input type="radio" id="star4" name="rating" value="4" />
+    <label for="star4" title="Bueno">&#9733;</label>
+    <input type="radio" id="star3" name="rating" value="3" />
+    <label for="star3" title="Regular">&#9733;</label>
+    <input type="radio" id="star2" name="rating" value="2" />
+    <label for="star2" title="Malo">&#9733;</label>
+    <input type="radio" id="star1" name="rating" value="1" />
+    <label for="star1" title="Muy Malo">&#9733;</label>
+  </div>
+
+  <div>
+    <label for="comments">Comentarios:</label><br>
+    <textarea id="comments" name="comments" rows="4" cols="50"></textarea>
+  </div>
+
+  <div>
+    <button type="submit">Enviar Calificación</button>
+    <input type="hidden" name="id_reserva" th:value="${reserva.idReserva}">
+  </div>
+</form>
+
+</body>
+</html>

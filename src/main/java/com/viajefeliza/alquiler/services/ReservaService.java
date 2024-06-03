@@ -11,12 +11,6 @@ import com.viajefeliza.alquiler.model.Reserva;
 import com.viajefeliza.alquiler.model.User;
 import com.viajefeliza.alquiler.repositories.ReservaRepo;
 import com.viajefeliza.alquiler.repositories.TemporadaRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
 
 
 @Service
