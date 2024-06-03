@@ -31,6 +31,11 @@ public class AppController {
     @Autowired
     private TelefonoService telefonoService;
 
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/home";
+    }
+
     @GetMapping("/home")
     public String home(HttpSession session) {
         // Verificar si el usuario es administrador
