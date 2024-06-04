@@ -1,14 +1,15 @@
 package com.viajefeliza.alquiler.controller;
 
-import com.viajefeliza.alquiler.services.BackupService;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.viajefeliza.alquiler.services.BackupService;
 
 @Controller
 public class DatabaseController {
@@ -20,7 +21,7 @@ public class DatabaseController {
         String backupFilePath = "src/main/resources/backups/" + backupFileName;
 
         try {
-            String result= backupService.backupDatabase("root", "calde0102", "viajefeliz", backupFilePath );
+            String result= backupService.backupDatabase("root", "123456789", "viajefeliz", backupFilePath );
             redirectAttributes.addFlashAttribute("message", result);
         } catch (IOException e) {
             e.printStackTrace();
