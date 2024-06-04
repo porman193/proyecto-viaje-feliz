@@ -1,5 +1,19 @@
 package com.viajefeliza.alquiler.controller;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.viajefeliza.alquiler.model.Pagos;
 import com.viajefeliza.alquiler.model.Property;
 import com.viajefeliza.alquiler.model.Reserva;
@@ -8,17 +22,10 @@ import com.viajefeliza.alquiler.services.PagosServices;
 import com.viajefeliza.alquiler.services.PropertyService;
 import com.viajefeliza.alquiler.services.ReservaService;
 import com.viajefeliza.alquiler.services.TemporadaService;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import jakarta.servlet.http.HttpSession;
+
+
 
 @Controller
 public class ReservaController {
