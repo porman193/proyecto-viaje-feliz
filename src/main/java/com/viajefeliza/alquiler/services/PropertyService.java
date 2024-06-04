@@ -1,10 +1,16 @@
 package com.viajefeliza.alquiler.services;
 
-import com.viajefeliza.alquiler.model.Property;
-import com.viajefeliza.alquiler.repositories.PropertyRepo;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.*;
+
+import com.viajefeliza.alquiler.model.Property;
+import com.viajefeliza.alquiler.repositories.PropertyRepo;
 
 @Service
 public class PropertyService {
@@ -77,5 +83,7 @@ public class PropertyService {
         List<Property> properties = propertyRepo.findPropertiesByReservationDate(arrivalDate, departureDate);
         return properties.contains(property);
     }
-
+ public void updateProperty(Property Property) {
+        propertyRepo.save(Property);
+    }
 }

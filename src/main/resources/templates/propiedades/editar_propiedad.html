@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Propiedad</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles_editar_propiedad.css">
+</head>
+<body>
+<div class="admin-header">
+    <h1>Editar Propiedad</h1> 
+</div>
+<div class="admin-container">
+
+    <form th:action="@{/editar/{id}(id=${property.idPropiedad})}" method="post" class="edit-form">
+
+
+
+
+        <input type="hidden" id="idPropiedad" name="idPropiedad" th:value="${property.idPropiedad}">
+        
+        <div>
+            <label for="numHabitaciones">Habitaciones:</label>
+            <input type="number" id="numHabitaciones" name="numHabitaciones" th:value="${property.numHabitaciones}" required>
+        </div>
+        
+        <div>
+            <label for="precioBase">Precio Base:</label>
+            <input type="number" step="0.01" id="precioBase" name="precioBase" th:value="${property.precioBase}" required>
+        </div>
+        
+        <div>
+            <label for="aceptaMascotas">Acepta Mascotas:</label>
+            <input type="checkbox" id="aceptaMascotas" name="aceptaMascotas" th:checked="${property.aceptaMascotas}">
+        </div>
+        
+        <div>
+            <label for="numBanos">Baños:</label>
+            <input type="number" id="numBanos" name="numBanos" th:value="${property.numBanos}" required>
+        </div>
+        
+        <div>
+            <label for="calefaccion">Calefacción:</label>
+            <input type="checkbox" id="calefaccion" name="calefaccion" th:checked="${property.calefaccion}">
+        </div>
+        
+        <div>
+            <label for="aireAcondicionado">Aire Acondicionado:</label>
+            <input type="checkbox" id="aireAcondicionado" name="aireAcondicionado" th:checked="${property.aireAcondicionado}">
+        </div>
+        
+        <div>
+            <label for="ubicacionDireccion">Dirección:</label>
+            <input type="text" id="ubicacionDireccion" name="ubicacionDireccion" th:value="${property.ubicacionDireccion}" required>
+        </div>
+        
+        <div>
+            <label for="capacidad">Capacidad:</label>
+            <input type="number" id="capacidad" name="capacidad" th:value="${property.capacidad}" required>
+        </div>
+        
+        <div>
+            <label for="tipoPropiedad">Tipo de Propiedad:</label>
+            <input type="text" id="tipoPropiedad" name="tipoPropiedad" th:value="${property.tipoPropiedad.tipo}" required>
+        </div>
+        
+        <div>
+            <label for="paisUbicacion">País de Ubicación:</label>
+            <input type="text" id="paisUbicacion" name="paisUbicacion" th:value="${property.paisUbicacion.pais}" required>
+        </div>
+        
+        <div>
+            <label for="ciudadUbicacion">Ciudad de Ubicación:</label>
+            <input type="text" id="ciudadUbicacion" name="ciudadUbicacion" th:value="${property.ciudadUbicacion.ciudad}" required>
+        </div>
+        
+        <div>
+            <label for="regionUbicacion">Región de Ubicación:</label>
+            <input type="text" id="regionUbicacion" name="regionUbicacion" th:value="${property.regionUbicacion.region}" required>
+        </div>
+        
+        <div class="buttons">
+            <button type="submit" class="button save-button">Guardar Cambios</button>
+            <a th:href="@{/propiedades}" class="button cancel-button">Cancelar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

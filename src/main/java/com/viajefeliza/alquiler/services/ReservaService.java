@@ -64,4 +64,7 @@ public class ReservaService {
     public Reserva getReservaById(Integer id) {
         return reservaRepo.findById(id).orElse(null);
     }
+    public void updateReserva(Reserva Reserva) {
+      reservaRepo.save(Reserva);
+    }
 }
