@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Reserva</title>
+    <link rel="stylesheet" type="text/css" href="css/styles_editar_reserva.css">
+</head>
+<body>
+<div class="admin-header">
+    <h1>Panel de Administración - Reservas</h1>
+</div>
+<div class="admin-container">
+    <h2>Editar Reserva</h2>
+    <form th:action="@{/reservas/editar-reservas/{id}(id=${reserva.id})}" method="post" class="edit-form">
+        <input type="hidden" th:name="id" th:value="${reserva.id}">
+        <div class="form-group">
+            <label for="comentarios">Comentarios:</label>
+            <textarea id="comentarios" name="comentarios" rows="4" th:text="${reserva.comentarios}"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="calificacion">Calificación:</label>
+            <input type="number" id="calificacion" name="calificacion" min="1" max="5" th:value="${reserva.calificacion}">
+        </div>
+        <div class="form-group">
+            <label for="fechaInicio">Fecha de Inicio:</label>
+            <input type="date" id="fechaInicio" name="fechaInicio" th:value="${reserva.fechaInicio}">
+        </div>
+        <div class="form-group">
+            <label for="fechaFin">Fecha de Fin:</label>
+            <input type="date" id="fechaFin" name="fechaFin" th:value="${reserva.fechaFin}">
+        </div>
+        <div class="form-group">
+            <label for="precioTotal">Precio Total:</label>
+            <input type="number" step="0.01" id="precioTotal" name="precioTotal" th:value="${reserva.precioTotal}">
+        </div>
+        <div class="form-group">
+            <label for="mascotas">Mascotas:</label>
+            <input type="checkbox" id="mascotas" name="mascotas" th:checked="${reserva.mascotas}">
+        </div>
+        <div class="form-group">
+            <label for="numPersonas">Número de Personas:</label>
+            <input type="number" id="numPersonas" name="numPersonas" th:value="${reserva.numPersonas}">
+        </div>
+        <div class="form-buttons">
+            <button type="submit" class="button save-button">Guardar Cambios</button>
+            <a th:href="@{/reservas}" class="button cancel-button">Cancelar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
