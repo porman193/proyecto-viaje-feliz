@@ -49,7 +49,7 @@
                 <td th:text="${property.regionUbicacion.region}">cundinamarca</td>
                 <!-- Asegúrate de incluir todos los atributos de la clase Property -->
                 <td>
-                    <form th:action="@{/edit/{id}(id=${property.idPropiedad})}" method="get" class="action-form">
+                    <form th:action="@{/editar/{id}(id=${property.idPropiedad})}" method="get" class="action-form">
                         <button type="submit" class="button edit-button">Editar</button>
                     </form>
                     <form th:action="@{/delete/{id}(id=${property.idPropiedad})}" method="post" class="action-form">
