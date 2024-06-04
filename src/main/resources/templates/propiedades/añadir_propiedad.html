@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Añadir Propiedad</title>
+    <link rel="stylesheet" type="text/css" href="css/styles_añadir_propiedad.css">
+</head>
+<body>
+<div class="add-property-container">
+    <h1>Añadir Nueva Propiedad</h1>
+    <form th:action="@{/propiedades/add}" method="post">
+        <div class="form-group">
+            <label for="numHabitaciones">Habitaciones:</label>
+            <input type="number" id="numHabitaciones" name="numHabitaciones" required>
+        </div>
+        <div class="form-group">
+            <label for="precioBase">Precio Base:</label>
+            <input type="number" step="0.01" id="precioBase" name="precioBase" required>
+        </div>
+        <div class="form-group">
+            <label for="aceptaMascotas">Acepta Mascotas:</label>
+            <input type="checkbox" id="aceptaMascotas" name="aceptaMascotas">
+        </div>
+        <div class="form-group">
+            <label for="numBanos">Baños:</label>
+            <input type="number" id="numBanos" name="numBanos" required>
+        </div>
+        <div class="form-group">
+            <label for="calefaccion">Calefacción:</label>
+            <input type="checkbox" id="calefaccion" name="calefaccion">
+        </div>
+        <div class="form-group">
+            <label for="aireAcondicionado">Aire Acondicionado:</label>
+            <input type="checkbox" id="aireAcondicionado" name="aireAcondicionado">
+        </div>
+        <div class="form-group">
+            <label for="ubicacionDireccion">Dirección:</label>
+            <input type="text" id="ubicacionDireccion" name="ubicacionDireccion" required>
+        </div>
+        <div class="form-group">
+            <label for="capacidad">Capacidad:</label>
+            <input type="number" id="capacidad" name="capacidad" required>
+        </div>
+        <div class="form-group">
+            <label for="tipoPropiedad">Tipo de Propiedad:</label>
+            <input type="text" id="tipoPropiedad" name="tipoPropiedad" required>
+        </div>
+        <div class="form-group">
+            <label for="paisUbicacion">País de Ubicación:</label>
+            <input type="text" id="paisUbicacion" name="paisUbicacion" required>
+        </div>
+        <div class="form-group">
+            <label for="ciudadUbicacion">Ciudad de Ubicación:</label>
+            <input type="text" id="ciudadUbicacion" name="ciudadUbicacion" required>
+        </div>
+        <div class="form-group">
+            <label for="regionUbicacion">Región de Ubicación:</label>
+            <input type="text" id="regionUbicacion" name="regionUbicacion" required>
+        </div>
+        <div class="form-buttons">
+            <button type="submit">Guardar</button>
+            <button type="button" onclick="window.location.href='/propiedades'">Cancelar</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

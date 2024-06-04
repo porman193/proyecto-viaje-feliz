@@ -1,13 +1,20 @@
 package com.viajefeliza.alquiler.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long identificacion;
+    private Integer identificacion;
 
     private String direccion;
     private String nacionalidad;
@@ -35,11 +42,11 @@ public class User {
         this.contrasena = contrasena;
     }
 
-    public Long getIdentificacion() {
+    public Integer getIdentificacion() {
         return identificacion;
     }
 
-    public void setIdentificacion(Long identificacion) {
+    public void setIdentificacion(Integer identificacion) {
         this.identificacion = identificacion;
     }
 

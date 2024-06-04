@@ -1,8 +1,9 @@
 package com.viajefeliza.alquiler.repositories;
 
-import com.viajefeliza.alquiler.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepo extends JpaRepository<User, Long> {
+import com.viajefeliza.alquiler.model.User;
+
+public interface UserRepo extends JpaRepository<User, Integer> {
     User findByEmail(String email);
 }

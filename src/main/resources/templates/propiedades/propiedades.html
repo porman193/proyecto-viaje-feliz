@@ -27,6 +27,7 @@
                 <th>País de Ubicación</th>
                 <th>Ciudad de Ubicación</th>
                 <th>Región de Ubicación</th>
+                <th>Acciones</th>
                 <!-- Asegúrate de incluir todos los atributos de la clase Property -->
             </tr>
         </thead>
@@ -47,7 +48,17 @@
                 <td th:text="${property.ciudadUbicacion.ciudad}">colombia</td>
                 <td th:text="${property.regionUbicacion.region}">cundinamarca</td>
                 <!-- Asegúrate de incluir todos los atributos de la clase Property -->
-            </tr>
+                <td>
+                    <form th:action="@{/edit/{id}(id=${property.idPropiedad})}" method="get" class="action-form">
+                        <button type="submit" class="button edit-button">Editar</button>
+                    </form>
+                    <form th:action="@{/delete/{id}(id=${property.idPropiedad})}" method="post" class="action-form">
+                        <button type="submit" class="button delete-button">Eliminar</button>
+                    </form>
+                    <form th:action="@{/comments/{id}(id=${property.idPropiedad})}" method="get" class="action-form">
+                        <button type="submit" class="button comments-button">Agregar</button>
+                    </form>
+                </td>
         </tbody>
     </table>
 </div>
