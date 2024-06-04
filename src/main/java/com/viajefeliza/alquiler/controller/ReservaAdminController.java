@@ -65,4 +65,11 @@ public class ReservaAdminController {
         reservaService.updateReserva(reserva);
         return "redirect:/reservas";
     }
+    @GetMapping("/comentarios-reserva/{id}")
+    public String mostrarComentariosReserva(@PathVariable Integer idReserva, Model model) {
+        
+        Reserva reserva = reservaService.getReservaById(idReserva);
+        model.addAttribute("comentarios", reserva.getComentariosEncuesta());
+        return "reservas/comentarios"; // Este es el nombre del archivo HTML sin la extensión
+    }
 }

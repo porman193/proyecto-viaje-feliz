@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Comentarios de la Reserva</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles_comentarios_reserva.css}">
+</head>
+<body>
+    <div class="comentarios-container">s
+        <h1>Comentarios de la Reserva</h1>
+        <div class="comentario">
+            <p th:text="${comentario}"></p>
+        </div>
+        <a th:href="@{/reservas}" class="button">Volver a Reservas</a>
+    </div>
+</body>
+</html>

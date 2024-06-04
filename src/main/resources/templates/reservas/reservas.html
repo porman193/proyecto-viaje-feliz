@@ -44,7 +44,7 @@
                     <form th:action="@{/delete/{id}(id=${reserva.idReserva})}" method="post" class="action-form">
                         <button type="submit" class="button delete-button">Eliminar</button>
                     </form>
-                    <form th:action="@{/comments/{id}(id=${reserva.idReserva})}" method="get" class="action-form">
+                    <form th:action="@{/comentarios-reserva/{idReserva}(idReserva=${reserva.idReserva})}" method="get" class="action-form">
                         <button type="submit" class="button comments-button">Comentarios</button>
                     </form>
                 </td>
