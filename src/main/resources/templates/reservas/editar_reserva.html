@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Reserva</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/styles_editar_reserva.css}">
+    <link rel="stylesheet" type="text/css" th:href="/css/styles_editar_reserva.css">
 </head>
 <body>
 <div class="admin-header">
@@ -11,8 +11,8 @@
 </div>
 <div class="admin-container">
     <h2>Editar Reserva</h2>
-    <form th:action="@{/reservas/editar-reservas/{id}(id=${reserva.idReserva})}" method="post" class="edit-form">
-        <input type="hidden" th:name="id" th:value="${reserva.idReserva}">
+    <form th:action="@{/editar-reserva/{id}(id=${reserva.id_reserva})}" method="post" class="edit-form">
+        <input type="hidden" id="id_reserva" name="id_reserva" th:value="${reserva.idReserva}">
         <div class="form-group">
             <label for="comentarios">Comentarios:</label>
             <textarea id="comentarios" name="comentarios" rows="4" th:text="${reserva.comentariosEncuesta}"></textarea>

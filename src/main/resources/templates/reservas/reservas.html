@@ -37,7 +37,7 @@
                 <td th:text="${reserva.mascotas} ? 'Sí' : 'No'">Sí</td>
                 <td th:text="${reserva.numPersonas}">4</td>
                 <td>
-                    <form th:action="@{/editar-reservas/{id}(id=${reserva.idReserva})}" method="get" class="action-form">
+                    <form th:action="@{/editar-reserva/{id}(id=${reserva.idReserva})}" method="get" class="action-form">
                         <button type="submit" class="button edit-button">Editar</button>
                     </form>
                     <form th:action="@{/delete/{id}(id=${reserva.idReserva})}" method="post" class="action-form">
