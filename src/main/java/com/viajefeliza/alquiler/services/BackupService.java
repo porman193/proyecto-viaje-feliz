@@ -9,13 +9,29 @@ import java.io.*;
 @Service
 public class BackupService {
     public String backupDatabase(String user,String password, String bd_name,String path) throws InterruptedException, IOException {
-        ProcessBuilder processBuilder = new ProcessBuilder(
-                "mysqldump",
-                "--user=" + user,
-                "--password=" + password,
-                "--default-character-set=utf8",
-                bd_name
-        );
+        String os = System.getProperty("os.name").toLowerCase();
+        ProcessBuilder processBuilder;
+
+        if (os.contains("win")) {
+            // Para Windows, especifica la ruta completa del comando mysqldump
+            String mysqlPath = "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe"; // Ajusta la ruta según tu instalación de MySQL
+            processBuilder = new ProcessBuilder(
+                    mysqlPath,
+                    "--user=" + user,
+                    "--password=" + password,
+                    "--default-character-set=utf8",
+                    bd_name
+            );
+        } else {
+            // Para Linux, el comando mysqldump se espera que esté en el PATH
+            processBuilder = new ProcessBuilder(
+                    "mysqldump",
+                    "--user=" + user,
+                    "--password=" + password,
+                    "--default-character-set=utf8",
+                    bd_name
+            );
+        }
         File file = new File(path);
         processBuilder.redirectOutput(file);
 
