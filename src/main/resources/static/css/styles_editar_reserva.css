@@ -1,50 +1,40 @@
-/* General styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-/* Header styles */
+/* Estilos para el encabezado */
 .admin-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
 }
 
 .admin-header h1 {
     margin: 0;
-    font-size: 24px;
 }
 
-/* Container styles */
+/* Estilos para el contenedor principal */
 .admin-container {
-    width: 50%;
-    margin: 30px auto;
+    max-width: 800px;
+    margin: 20px auto;
     padding: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
+/* Estilos para el título del formulario */
 .admin-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    margin-top: 0;
 }
 
-/* Form styles */
+/* Estilos para el formulario */
 .edit-form {
-    width: 100%;
+    margin-top: 20px;
 }
 
+/* Estilos para los campos de formulario */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
     font-weight: bold;
 }
 
@@ -54,23 +44,26 @@ body {
 .form-group textarea {
     width: 100%;
     padding: 8px;
-    box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    height: 100px;
 }
 
 .form-group input[type="checkbox"] {
     margin-right: 5px;
 }
 
+/* Estilos para los botones */
 .form-buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin-top: 20px;
 }
 
 .button {
-    padding: 10px 15px;
+    padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -81,18 +74,15 @@ body {
     color: white;
 }
 
-.save-button:hover {
-    background-color: #45a049;
-}
-
 .cancel-button {
-    background-color: #f44336;
+    background-color: #bbb;
     color: white;
     text-decoration: none;
-    padding: 10px 15px;
-    text-align: center;
+    margin-left: 10px;
 }
 
+.save-button:hover,
 .cancel-button:hover {
-    background-color: #e53935;
+    opacity: 0.8;
 }
+

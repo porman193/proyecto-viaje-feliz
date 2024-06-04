@@ -31,13 +31,14 @@
                 <td th:text="${reserva.idReserva}">1</td>
                 <td th:text="${reserva.comentariosEncuesta}">Buen servicio</td>
                 <td th:text="${reserva.califEncuesta}">5</td>
+               
                 <td th:text="${#dates.format(reserva.fechaIni, 'dd/MM/yyyy')}">01/01/2024</td>
                 <td th:text="${#dates.format(reserva.fechaFin, 'dd/MM/yyyy')}">07/01/2024</td>
                 <td th:text="${reserva.precioTotal}">500</td>
                 <td th:text="${reserva.mascotas} ? 'Sí' : 'No'">Sí</td>
                 <td th:text="${reserva.numPersonas}">4</td>
                 <td>
-                    <form th:action="@{/editar-reserva/{id}(id=${reserva.idReserva})}" method="get" class="action-form">
+                    <form th:action="@{/editar-reservas/{id}(id=${reserva.idReserva})}" method="get" class="action-form">
                         <button type="submit" class="button edit-button">Editar</button>
                     </form>
                     <form th:action="@{/delete/{id}(id=${reserva.idReserva})}" method="post" class="action-form">

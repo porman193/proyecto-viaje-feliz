@@ -29,15 +29,15 @@ public class ReservaAdminController {
         return "reservas/reservas";
     }
 
-    @GetMapping("/editar-reserva/{id}")
+    @GetMapping("/editar-reservas/{id}")
     public String showEditReservaForm(@PathVariable Integer id, Model model) {
         Reserva reserva = reservaService.getReservaById(id);
         model.addAttribute("reserva", reserva);
         return "reservas/editar_reserva";
     }
 
-    @PostMapping("/editar-reserva/{id_reserva}")
-    public String updateReserva(@PathVariable Integer id_reserva, 
+    @PostMapping("/editar-reservas/{idReserva}")
+    public String updateReserva(@PathVariable Integer idReserva, 
                                 @RequestParam String comentarios, 
                                 @RequestParam Integer calificacion, 
                                 @RequestParam String estado, 
@@ -48,14 +48,16 @@ public class ReservaAdminController {
                                 @RequestParam Integer numPersonas 
                               ) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date fechaIniDate = sdf.parse(fechaInicio);
+        Date fechaInicios = sdf.parse(fechaInicio);
         Date fechaFinDate = sdf.parse(fechaFin);
 
-        Reserva reserva = reservaService.getReservaById(id_reserva);
+        Reserva reserva = reservaService.getReservaById(idReserva);
         reserva.setComentariosEncuesta(comentarios);
         reserva.setCalifEncuesta(calificacion);
-        reserva.setFechaIni(fechaIniDate);
+        reserva.setFechaIni(fechaInicios);
+
         reserva.setFechaFin(fechaFinDate);
+       
         reserva.setPrecioTotal(precioTotal);
         reserva.setMascotas(mascotas);
         reserva.setNumPersonas(numPersonas);
