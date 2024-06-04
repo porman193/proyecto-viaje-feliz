@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS propiedad (
     num_banos INT NOT NULL,
     calefaccion BOOLEAN,
     aire_acondicionado BOOLEAN,
-    ubicacion_direccion VARCHAR(30) NOT NULL,
+    ubicacion_direccion VARCHAR(60) NOT NULL,
     id_tipo_propiedad INT NOT NULL,
     id_pais_ubi INT NOT NULL,
     id_ciudad_ubi INT NOT NULL,
@@ -189,11 +189,11 @@ BEGIN
         UPDATE reserva SET estado = 'confirmada' WHERE id_reserva = p_id_reserva;
     END IF;
 
-    IF porcentaje_pagado <= 20 THEN
+    IF porcentaje_pagado >= 20 AND  porcentaje_pagado<100 THEN
         UPDATE reserva SET estado = 'apartada' WHERE id_reserva = p_id_reserva;
     END IF;
 
-    IF porcentaje_pagado < 20 AND porcentaje_pagado < 100 THEN
+    IF porcentaje_pagado < 20 THEN
         UPDATE reserva SET estado = 'pendiente' WHERE id_reserva = p_id_reserva;
     END IF;
 END //

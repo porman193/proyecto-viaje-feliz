@@ -5,7 +5,7 @@ USE viajefeliz;
 INSERT INTO pais_ubicacion (pais) VALUES ('Colombia');
 
 -- Insertar datos en la tabla ciudad_ubicacion desde el archivo CSV
-LOAD DATA INFILE 'C:/Users/Administrador/Desktop/Cuarto Semestre/BDFinal/proyecto-viaje-feliz/src/main/resources/config/Inserts/ciudades.csv'
+LOAD DATA INFILE '/var/lib/csv/ciudades.csv'
 INTO TABLE ciudad_ubicacion
 CHARACTER SET utf8
 
@@ -15,7 +15,7 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
 -- Insertar datos en la tabla region_ubicacion desde el archivo CSV
-LOAD DATA INFILE 'C:/Users/Administrador/Desktop/Cuarto Semestre/BDFinal/proyecto-viaje-feliz/src/main/resources/config/Inserts/regiones.csv'
+LOAD DATA INFILE '/var/lib/csv/regiones.csv'
 INTO TABLE region_ubicacion
 CHARACTER SET utf8
 
@@ -37,7 +37,7 @@ INSERT INTO rol_usuario (rol) VALUES ('Administrador');
 INSERT INTO rol_usuario (rol) VALUES ('Cliente');
 
 -- Insertar datos en la tabla usuario desde el archivo CSV
-LOAD DATA INFILE 'C:/Users/Administrador/Desktop/Cuarto Semestre/BDFinal/proyecto-viaje-feliz/src/main/resources/config/Inserts/usuarios.csv'
+LOAD DATA INFILE '/var/lib/csv/usuarios.csv'
 INTO TABLE usuario
 CHARACTER SET utf8
 FIELDS TERMINATED BY ','
@@ -46,7 +46,7 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
 -- Insertar datos en la tabla telefonos_usuario desde el archivo CSV
-LOAD DATA INFILE 'C:/Users/Administrador/Desktop/Cuarto Semestre/BDFinal/proyecto-viaje-feliz/src/main/resources/config/Inserts/telefonos_usuarios.csv'
+LOAD DATA INFILE '/var/lib/csv/telefonos_usuarios.csv'
 INTO TABLE telefonos_usuario
 CHARACTER SET utf8
 
@@ -56,7 +56,7 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
 -- Insertar datos en la tabla propiedad desde el archivo CSV
-LOAD DATA INFILE 'C:/Users/Administrador/Desktop/Cuarto Semestre/BDFinal/proyecto-viaje-feliz/src/main/resources/config/Inserts/propiedades.csv'
+LOAD DATA INFILE '/var/lib/csv/propiedades.csv'
 INTO TABLE propiedad
 CHARACTER SET utf8
 
